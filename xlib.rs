@@ -1051,7 +1051,7 @@ pub type struct_unnamed1 = {
 };
 
 #[link_name="X11"]
-extern mod bindgen {
+pub extern mod bindgen {
 
 pub fn _Xmblen(++arg0: *c_char, ++arg1: c_int) -> c_int;
 
