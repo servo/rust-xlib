@@ -32,29 +32,29 @@ pub type KeyCode = c_uchar;
 
 pub type XPointer = *c_char;
 
-pub type struct__XExtData = {
+pub struct struct__XExtData {
     number: c_int,
     next: *c_void /* struct__XExtData */,
     free_private: *u8,
     private_data: XPointer,
-};
+}
 
 pub type XExtData = struct__XExtData;
 
-pub type XExtCodes = {
+pub struct XExtCodes {
     extension: c_int,
     major_opcode: c_int,
     first_event: c_int,
     first_error: c_int,
-};
+}
 
-pub type XPixmapFormatValues = {
+pub struct XPixmapFormatValues {
     depth: c_int,
     bits_per_pixel: c_int,
     scanline_pad: c_int,
-};
+}
 
-pub type XGCValues = {
+pub struct XGCValues {
     function: c_int,
     plane_mask: c_ulong,
     foreground: c_ulong,
@@ -78,13 +78,13 @@ pub type XGCValues = {
     clip_mask: Pixmap,
     dash_offset: c_int,
     dashes: c_char,
-};
+}
 
 pub type struct__XGC = c_void;
 
 pub type GC = *struct__XGC;
 
-pub type Visual = {
+pub struct Visual {
     ext_data: *XExtData,
     visualid: VisualID,
     _class: c_int,
@@ -93,17 +93,17 @@ pub type Visual = {
     blue_mask: c_ulong,
     bits_per_rgb: c_int,
     map_entries: c_int,
-};
+}
 
-pub type Depth = {
+pub struct Depth {
     depth: c_int,
     nvisuals: c_int,
     visuals: *Visual,
-};
+}
 
 pub type struct__XDisplay = c_void;
 
-pub type Screen = {
+pub struct Screen {
     ext_data: *XExtData,
     display: *c_void /* struct__XDisplay */,
     root: Window,
@@ -124,16 +124,16 @@ pub type Screen = {
     backing_store: c_int,
     save_unders: c_int,
     root_input_mask: c_long,
-};
+}
 
-pub type ScreenFormat = {
+pub struct ScreenFormat {
     ext_data: *XExtData,
     depth: c_int,
     bits_per_pixel: c_int,
     scanline_pad: c_int,
-};
+}
 
-pub type XSetWindowAttributes = {
+pub struct XSetWindowAttributes {
     background_pixmap: Pixmap,
     background_pixel: c_ulong,
     border_pixmap: Pixmap,
@@ -149,9 +149,9 @@ pub type XSetWindowAttributes = {
     override_redirect: c_int,
     colormap: Colormap,
     cursor: Cursor,
-};
+}
 
-pub type XWindowAttributes = {
+pub struct XWindowAttributes {
     x: c_int,
     y: c_int,
     width: c_int,
@@ -175,22 +175,22 @@ pub type XWindowAttributes = {
     do_not_propagate_mask: c_long,
     override_redirect: c_int,
     screen: *Screen,
-};
+}
 
-pub type XHostAddress = {
+pub struct XHostAddress {
     family: c_int,
     length: c_int,
     address: *c_char,
-};
+}
 
-pub type XServerInterpretedAddress = {
+pub struct XServerInterpretedAddress {
     typelength: c_int,
     valuelength: c_int,
     _type: *c_char,
     value: *c_char,
-};
+}
 
-pub type struct__XImage = {
+pub struct struct__XImage {
     width: c_int,
     height: c_int,
     xoffset: c_int,
@@ -208,20 +208,20 @@ pub type struct__XImage = {
     blue_mask: c_ulong,
     obdata: XPointer,
     f: struct_funcs,
-};
+}
 
-pub type struct_funcs = {
+pub struct struct_funcs {
     create_image: *u8,
     destroy_image: *u8,
     get_pixel: *u8,
     put_pixel: *u8,
     sub_image: *u8,
     add_pixel: *u8,
-};
+}
 
 pub type XImage = struct__XImage;
 
-pub type XWindowChanges = {
+pub struct XWindowChanges {
     x: c_int,
     y: c_int,
     width: c_int,
@@ -229,46 +229,46 @@ pub type XWindowChanges = {
     border_width: c_int,
     sibling: Window,
     stack_mode: c_int,
-};
+}
 
-pub type XColor = {
+pub struct XColor {
     pixel: c_ulong,
     red: c_ushort,
     green: c_ushort,
     blue: c_ushort,
     flags: c_char,
     pad: c_char,
-};
+}
 
-pub type XSegment = {
+pub struct XSegment {
     x1: c_short,
     y1: c_short,
     x2: c_short,
     y2: c_short,
-};
+}
 
-pub type XPoint = {
+pub struct XPoint {
     x: c_short,
     y: c_short,
-};
+}
 
-pub type XRectangle = {
+pub struct XRectangle {
     x: c_short,
     y: c_short,
     width: c_ushort,
     height: c_ushort,
-};
+}
 
-pub type XArc = {
+pub struct XArc {
     x: c_short,
     y: c_short,
     width: c_ushort,
     height: c_ushort,
     angle1: c_short,
     angle2: c_short,
-};
+}
 
-pub type XKeyboardControl = {
+pub struct XKeyboardControl {
     key_click_percent: c_int,
     bell_percent: c_int,
     bell_pitch: c_int,
@@ -277,9 +277,9 @@ pub type XKeyboardControl = {
     led_mode: c_int,
     key: c_int,
     auto_repeat_mode: c_int,
-};
+}
 
-pub type XKeyboardState = {
+pub struct XKeyboardState {
     key_click_percent: c_int,
     bell_percent: c_int,
     bell_pitch: c_uint,
@@ -287,18 +287,18 @@ pub type XKeyboardState = {
     led_mask: c_ulong,
     global_auto_repeat: c_int,
     auto_repeats: (c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char),
-};
+}
 
-pub type XTimeCoord = {
+pub struct XTimeCoord {
     time: Time,
     x: c_short,
     y: c_short,
-};
+}
 
-pub type XModifierKeymap = {
+pub struct XModifierKeymap {
     max_keypermod: c_int,
     modifiermap: *KeyCode,
-};
+}
 
 pub type Display = struct__XDisplay;
 
@@ -308,7 +308,7 @@ pub type struct__XrmHashBucketRec = c_void;
 
 pub type _XPrivDisplay = *struct_unnamed1;
 
-pub type XKeyEvent = {
+pub struct XKeyEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -324,13 +324,13 @@ pub type XKeyEvent = {
     state: c_uint,
     keycode: c_uint,
     same_screen: c_int,
-};
+}
 
 pub type XKeyPressedEvent = XKeyEvent;
 
 pub type XKeyReleasedEvent = XKeyEvent;
 
-pub type XButtonEvent = {
+pub struct XButtonEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -346,13 +346,13 @@ pub type XButtonEvent = {
     state: c_uint,
     button: c_uint,
     same_screen: c_int,
-};
+}
 
 pub type XButtonPressedEvent = XButtonEvent;
 
 pub type XButtonReleasedEvent = XButtonEvent;
 
-pub type XMotionEvent = {
+pub struct XMotionEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -368,11 +368,11 @@ pub type XMotionEvent = {
     state: c_uint,
     is_hint: c_char,
     same_screen: c_int,
-};
+}
 
 pub type XPointerMovedEvent = XMotionEvent;
 
-pub type XCrossingEvent = {
+pub struct XCrossingEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -390,13 +390,13 @@ pub type XCrossingEvent = {
     same_screen: c_int,
     focus: c_int,
     state: c_uint,
-};
+}
 
 pub type XEnterWindowEvent = XCrossingEvent;
 
 pub type XLeaveWindowEvent = XCrossingEvent;
 
-pub type XFocusChangeEvent = {
+pub struct XFocusChangeEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -404,22 +404,22 @@ pub type XFocusChangeEvent = {
     window: Window,
     mode: c_int,
     detail: c_int,
-};
+}
 
 pub type XFocusInEvent = XFocusChangeEvent;
 
 pub type XFocusOutEvent = XFocusChangeEvent;
 
-pub type XKeymapEvent = {
+pub struct XKeymapEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
     display: *Display,
     window: Window,
     key_vector: (c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char),
-};
+}
 
-pub type XExposeEvent = {
+pub struct XExposeEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -430,9 +430,9 @@ pub type XExposeEvent = {
     width: c_int,
     height: c_int,
     count: c_int,
-};
+}
 
-pub type XGraphicsExposeEvent = {
+pub struct XGraphicsExposeEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -445,9 +445,9 @@ pub type XGraphicsExposeEvent = {
     count: c_int,
     major_code: c_int,
     minor_code: c_int,
-};
+}
 
-pub type XNoExposeEvent = {
+pub struct XNoExposeEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -455,18 +455,18 @@ pub type XNoExposeEvent = {
     drawable: Drawable,
     major_code: c_int,
     minor_code: c_int,
-};
+}
 
-pub type XVisibilityEvent = {
+pub struct XVisibilityEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
     display: *Display,
     window: Window,
     state: c_int,
-};
+}
 
-pub type XCreateWindowEvent = {
+pub struct XCreateWindowEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -479,18 +479,18 @@ pub type XCreateWindowEvent = {
     height: c_int,
     border_width: c_int,
     override_redirect: c_int,
-};
+}
 
-pub type XDestroyWindowEvent = {
+pub struct XDestroyWindowEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
     display: *Display,
     event: Window,
     window: Window,
-};
+}
 
-pub type XUnmapEvent = {
+pub struct XUnmapEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -498,9 +498,9 @@ pub type XUnmapEvent = {
     event: Window,
     window: Window,
     from_configure: c_int,
-};
+}
 
-pub type XMapEvent = {
+pub struct XMapEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -508,18 +508,18 @@ pub type XMapEvent = {
     event: Window,
     window: Window,
     override_redirect: c_int,
-};
+}
 
-pub type XMapRequestEvent = {
+pub struct XMapRequestEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
     display: *Display,
     parent: Window,
     window: Window,
-};
+}
 
-pub type XReparentEvent = {
+pub struct XReparentEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -530,9 +530,9 @@ pub type XReparentEvent = {
     x: c_int,
     y: c_int,
     override_redirect: c_int,
-};
+}
 
-pub type XConfigureEvent = {
+pub struct XConfigureEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -546,9 +546,9 @@ pub type XConfigureEvent = {
     border_width: c_int,
     above: Window,
     override_redirect: c_int,
-};
+}
 
-pub type XGravityEvent = {
+pub struct XGravityEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -557,9 +557,9 @@ pub type XGravityEvent = {
     window: Window,
     x: c_int,
     y: c_int,
-};
+}
 
-pub type XResizeRequestEvent = {
+pub struct XResizeRequestEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -567,9 +567,9 @@ pub type XResizeRequestEvent = {
     window: Window,
     width: c_int,
     height: c_int,
-};
+}
 
-pub type XConfigureRequestEvent = {
+pub struct XConfigureRequestEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -584,9 +584,9 @@ pub type XConfigureRequestEvent = {
     above: Window,
     detail: c_int,
     value_mask: c_ulong,
-};
+}
 
-pub type XCirculateEvent = {
+pub struct XCirculateEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -594,9 +594,9 @@ pub type XCirculateEvent = {
     event: Window,
     window: Window,
     place: c_int,
-};
+}
 
-pub type XCirculateRequestEvent = {
+pub struct XCirculateRequestEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -604,9 +604,9 @@ pub type XCirculateRequestEvent = {
     parent: Window,
     window: Window,
     place: c_int,
-};
+}
 
-pub type XPropertyEvent = {
+pub struct XPropertyEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -615,9 +615,9 @@ pub type XPropertyEvent = {
     atom: Atom,
     time: Time,
     state: c_int,
-};
+}
 
-pub type XSelectionClearEvent = {
+pub struct XSelectionClearEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -625,9 +625,9 @@ pub type XSelectionClearEvent = {
     window: Window,
     selection: Atom,
     time: Time,
-};
+}
 
-pub type XSelectionRequestEvent = {
+pub struct XSelectionRequestEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -638,9 +638,9 @@ pub type XSelectionRequestEvent = {
     target: Atom,
     property: Atom,
     time: Time,
-};
+}
 
-pub type XSelectionEvent = {
+pub struct XSelectionEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -650,9 +650,9 @@ pub type XSelectionEvent = {
     target: Atom,
     property: Atom,
     time: Time,
-};
+}
 
-pub type XColormapEvent = {
+pub struct XColormapEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -661,9 +661,9 @@ pub type XColormapEvent = {
     colormap: Colormap,
     _new: c_int,
     state: c_int,
-};
+}
 
-pub type XClientMessageEvent = {
+pub struct XClientMessageEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -672,9 +672,9 @@ pub type XClientMessageEvent = {
     message_type: Atom,
     format: c_int,
     data: union_unnamed2,
-};
+}
 
-pub type XMappingEvent = {
+pub struct XMappingEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -683,9 +683,9 @@ pub type XMappingEvent = {
     request: c_int,
     first_keycode: c_int,
     count: c_int,
-};
+}
 
-pub type XErrorEvent = {
+pub struct XErrorEvent {
     _type: c_int,
     display: *Display,
     resourceid: XID,
@@ -693,26 +693,26 @@ pub type XErrorEvent = {
     error_code: c_uchar,
     request_code: c_uchar,
     minor_code: c_uchar,
-};
+}
 
-pub type XAnyEvent = {
+pub struct XAnyEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
     display: *Display,
     window: Window,
-};
+}
 
-pub type XGenericEvent = {
+pub struct XGenericEvent {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
     display: *Display,
     extension: c_int,
     evtype: c_int,
-};
+}
 
-pub type XGenericEventCookie = {
+pub struct XGenericEventCookie {
     _type: c_int,
     serial: c_ulong,
     send_event: c_int,
@@ -721,27 +721,27 @@ pub type XGenericEventCookie = {
     evtype: c_int,
     cookie: c_uint,
     data: *c_void,
-};
+}
 
 pub type union__XEvent = c_void /* FIXME: union type */;
 
 pub type XEvent = union__XEvent;
 
-pub type XCharStruct = {
+pub struct XCharStruct {
     lbearing: c_short,
     rbearing: c_short,
     width: c_short,
     ascent: c_short,
     descent: c_short,
     attributes: c_ushort,
-};
+}
 
-pub type XFontProp = {
+pub struct XFontProp {
     name: Atom,
     card32: c_ulong,
-};
+}
 
-pub type XFontStruct = {
+pub struct XFontStruct {
     ext_data: *XExtData,
     fid: Font,
     direction: c_uint,
@@ -758,33 +758,33 @@ pub type XFontStruct = {
     per_char: *XCharStruct,
     ascent: c_int,
     descent: c_int,
-};
+}
 
-pub type XTextItem = {
+pub struct XTextItem {
     chars: *c_char,
     nchars: c_int,
     delta: c_int,
     font: Font,
-};
+}
 
-pub type XChar2b = {
+pub struct XChar2b {
     byte1: c_uchar,
     byte2: c_uchar,
-};
+}
 
-pub type XTextItem16 = {
+pub struct XTextItem16 {
     chars: *XChar2b,
     nchars: c_int,
     delta: c_int,
     font: Font,
-};
+}
 
 pub type XEDataObject = c_void /* FIXME: union type */;
 
-pub type XFontSetExtents = {
+pub struct XFontSetExtents {
     max_ink_extent: XRectangle,
     max_logical_extent: XRectangle,
-};
+}
 
 pub type struct__XOM = c_void;
 
@@ -796,24 +796,24 @@ pub type XOC = *struct__XOC;
 
 pub type XFontSet = *struct__XOC;
 
-pub type XmbTextItem = {
+pub struct XmbTextItem {
     chars: *c_char,
     nchars: c_int,
     delta: c_int,
     font_set: *c_void /* XFontSet */,
-};
+}
 
-pub type XwcTextItem = {
+pub struct XwcTextItem {
     chars: *wchar_t,
     nchars: c_int,
     delta: c_int,
     font_set: *c_void /* XFontSet */,
-};
+}
 
-pub type XOMCharSetList = {
+pub struct XOMCharSetList {
     charset_count: c_int,
     charset_list: **c_char,
-};
+}
 
 
 pub type XOrientation = c_uint;
@@ -823,16 +823,16 @@ pub const XOMOrientation_TTB_LTR: u32 = 2_u32;
 pub const XOMOrientation_TTB_RTL: u32 = 3_u32;
 pub const XOMOrientation_Context: u32 = 4_u32;
 
-pub type XOMOrientation = {
+pub struct XOMOrientation {
     num_orientation: c_int,
     orientation: *XOrientation,
-};
+}
 
-pub type XOMFontInfo = {
+pub struct XOMFontInfo {
     num_font: c_int,
     font_struct_list: **XFontStruct,
     font_name_list: **c_char,
-};
+}
 
 pub type struct__XIM = c_void;
 
@@ -850,39 +850,39 @@ pub type XIDProc = *u8;
 
 pub type XIMStyle = c_ulong;
 
-pub type XIMStyles = {
+pub struct XIMStyles {
     count_styles: c_ushort,
     supported_styles: *XIMStyle,
-};
+}
 
 pub type XVaNestedList = *c_void;
 
-pub type XIMCallback = {
+pub struct XIMCallback {
     client_data: XPointer,
     callback: XIMProc,
-};
+}
 
-pub type XICCallback = {
+pub struct XICCallback {
     client_data: XPointer,
     callback: XICProc,
-};
+}
 
 pub type XIMFeedback = c_ulong;
 
-pub type struct__XIMText = {
+pub struct struct__XIMText {
     length: c_ushort,
     feedback: *XIMFeedback,
     encoding_is_wchar: c_int,
     string: union_unnamed3,
-};
+}
 
 pub type XIMText = struct__XIMText;
 
 pub type XIMPreeditState = c_ulong;
 
-pub type struct__XIMPreeditStateNotifyCallbackStruct = {
+pub struct struct__XIMPreeditStateNotifyCallbackStruct {
     state: XIMPreeditState,
-};
+}
 
 pub type XIMPreeditStateNotifyCallbackStruct = struct__XIMPreeditStateNotifyCallbackStruct;
 
@@ -890,12 +890,12 @@ pub type XIMResetState = c_ulong;
 
 pub type XIMStringConversionFeedback = c_ulong;
 
-pub type struct__XIMStringConversionText = {
+pub struct struct__XIMStringConversionText {
     length: c_ushort,
     feedback: *XIMStringConversionFeedback,
     encoding_is_wchar: c_int,
     string: union_unnamed4,
-};
+}
 
 pub type XIMStringConversionText = struct__XIMStringConversionText;
 
@@ -920,22 +920,22 @@ pub const XIMLineEnd: u32 = 9_u32;
 pub const XIMAbsolutePosition: u32 = 10_u32;
 pub const XIMDontChange: u32 = 11_u32;
 
-pub type struct__XIMStringConversionCallbackStruct = {
+pub struct struct__XIMStringConversionCallbackStruct {
     position: XIMStringConversionPosition,
     direction: XIMCaretDirection,
     operation: XIMStringConversionOperation,
     factor: c_ushort,
     text: *XIMStringConversionText,
-};
+}
 
 pub type XIMStringConversionCallbackStruct = struct__XIMStringConversionCallbackStruct;
 
-pub type struct__XIMPreeditDrawCallbackStruct = {
+pub struct struct__XIMPreeditDrawCallbackStruct {
     caret: c_int,
     chg_first: c_int,
     chg_length: c_int,
     text: *XIMText,
-};
+}
 
 pub type XIMPreeditDrawCallbackStruct = struct__XIMPreeditDrawCallbackStruct;
 
@@ -945,11 +945,11 @@ pub const XIMIsInvisible: u32 = 0_u32;
 pub const XIMIsPrimary: u32 = 1_u32;
 pub const XIMIsSecondary: u32 = 2_u32;
 
-pub type struct__XIMPreeditCaretCallbackStruct = {
+pub struct struct__XIMPreeditCaretCallbackStruct {
     position: c_int,
     direction: XIMCaretDirection,
     style: XIMCaretStyle,
-};
+}
 
 pub type XIMPreeditCaretCallbackStruct = struct__XIMPreeditCaretCallbackStruct;
 
@@ -958,34 +958,34 @@ pub type XIMStatusDataType = c_uint;
 pub const XIMTextType: u32 = 0_u32;
 pub const XIMBitmapType: u32 = 1_u32;
 
-pub type struct__XIMStatusDrawCallbackStruct = {
+pub struct struct__XIMStatusDrawCallbackStruct {
     _type: XIMStatusDataType,
     data: union_unnamed5,
-};
+}
 
 pub type XIMStatusDrawCallbackStruct = struct__XIMStatusDrawCallbackStruct;
 
-pub type struct__XIMHotKeyTrigger = {
+pub struct struct__XIMHotKeyTrigger {
     keysym: KeySym,
     modifier: c_int,
     modifier_mask: c_int,
-};
+}
 
 pub type XIMHotKeyTrigger = struct__XIMHotKeyTrigger;
 
-pub type struct__XIMHotKeyTriggers = {
+pub struct struct__XIMHotKeyTriggers {
     num_hot_key: c_int,
     key: *XIMHotKeyTrigger,
-};
+}
 
 pub type XIMHotKeyTriggers = struct__XIMHotKeyTriggers;
 
 pub type XIMHotKeyState = c_ulong;
 
-pub type XIMValuesList = {
+pub struct XIMValuesList {
     count_values: c_ushort,
     supported_values: **c_char,
-};
+}
 
 /* FIXME: global variable _Xdebug */
 
@@ -1003,7 +1003,7 @@ pub type union_unnamed2 = c_void /* FIXME: union type */;
 
 pub type union_unnamed4 = c_void /* FIXME: union type */;
 
-pub type struct_unnamed1 = {
+pub struct struct_unnamed1 {
     ext_data: *XExtData,
     private1: *c_void /* struct__XPrivate */,
     fd: c_int,
@@ -1048,7 +1048,7 @@ pub type struct_unnamed1 = {
     private18: XPointer,
     private19: c_int,
     xdefaults: *c_char,
-};
+}
 
 #[link_name="X11"]
 pub extern mod bindgen {
