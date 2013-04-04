@@ -817,11 +817,11 @@ pub struct XOMCharSetList {
 
 
 pub type XOrientation = c_uint;
-pub const XOMOrientation_LTR_TTB: u32 = 0_u32;
-pub const XOMOrientation_RTL_TTB: u32 = 1_u32;
-pub const XOMOrientation_TTB_LTR: u32 = 2_u32;
-pub const XOMOrientation_TTB_RTL: u32 = 3_u32;
-pub const XOMOrientation_Context: u32 = 4_u32;
+pub static XOMOrientation_LTR_TTB: u32 = 0_u32;
+pub static XOMOrientation_RTL_TTB: u32 = 1_u32;
+pub static XOMOrientation_TTB_LTR: u32 = 2_u32;
+pub static XOMOrientation_TTB_RTL: u32 = 3_u32;
+pub static XOMOrientation_Context: u32 = 4_u32;
 
 pub struct XOMOrientation {
     num_orientation: c_int,
@@ -907,18 +907,18 @@ pub type XIMStringConversionOperation = c_ushort;
 
 
 pub type XIMCaretDirection = c_uint;
-pub const XIMForwardChar: u32 = 0_u32;
-pub const XIMBackwardChar: u32 = 1_u32;
-pub const XIMForwardWord: u32 = 2_u32;
-pub const XIMBackwardWord: u32 = 3_u32;
-pub const XIMCaretUp: u32 = 4_u32;
-pub const XIMCaretDown: u32 = 5_u32;
-pub const XIMNextLine: u32 = 6_u32;
-pub const XIMPreviousLine: u32 = 7_u32;
-pub const XIMLineStart: u32 = 8_u32;
-pub const XIMLineEnd: u32 = 9_u32;
-pub const XIMAbsolutePosition: u32 = 10_u32;
-pub const XIMDontChange: u32 = 11_u32;
+pub static XIMForwardChar: u32 = 0_u32;
+pub static XIMBackwardChar: u32 = 1_u32;
+pub static XIMForwardWord: u32 = 2_u32;
+pub static XIMBackwardWord: u32 = 3_u32;
+pub static XIMCaretUp: u32 = 4_u32;
+pub static XIMCaretDown: u32 = 5_u32;
+pub static XIMNextLine: u32 = 6_u32;
+pub static XIMPreviousLine: u32 = 7_u32;
+pub static XIMLineStart: u32 = 8_u32;
+pub static XIMLineEnd: u32 = 9_u32;
+pub static XIMAbsolutePosition: u32 = 10_u32;
+pub static XIMDontChange: u32 = 11_u32;
 
 pub struct struct__XIMStringConversionCallbackStruct {
     position: XIMStringConversionPosition,
@@ -941,9 +941,9 @@ pub type XIMPreeditDrawCallbackStruct = struct__XIMPreeditDrawCallbackStruct;
 
 
 pub type XIMCaretStyle = c_uint;
-pub const XIMIsInvisible: u32 = 0_u32;
-pub const XIMIsPrimary: u32 = 1_u32;
-pub const XIMIsSecondary: u32 = 2_u32;
+pub static XIMIsInvisible: u32 = 0_u32;
+pub static XIMIsPrimary: u32 = 1_u32;
+pub static XIMIsSecondary: u32 = 2_u32;
 
 pub struct struct__XIMPreeditCaretCallbackStruct {
     position: c_int,
@@ -955,8 +955,8 @@ pub type XIMPreeditCaretCallbackStruct = struct__XIMPreeditCaretCallbackStruct;
 
 
 pub type XIMStatusDataType = c_uint;
-pub const XIMTextType: u32 = 0_u32;
-pub const XIMBitmapType: u32 = 1_u32;
+pub static XIMTextType: u32 = 0_u32;
+pub static XIMBitmapType: u32 = 1_u32;
 
 pub struct struct__XIMStatusDrawCallbackStruct {
     _type: XIMStatusDataType,
