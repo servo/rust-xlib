@@ -20,7 +20,7 @@ librustxlib.dummy: xlib.rc $(RUST_SRC)
 	touch $@
 
 xlib-test: xlib.rc $(RUST_SRC)
-	$(RUSTC) $(RUSTFLAGS) $< --our-dir . --test
+	$(RUSTC) $(RUSTFLAGS) $< -o $@ --test
 
 .PHONY: check
 check: xlib-test
