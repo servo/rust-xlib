@@ -16,11 +16,11 @@ all:	librustxlib.dummy
 	$(CC) $< -o $@ -c $(CFLAGS)
 
 librustxlib.dummy: xlib.rc $(RUST_SRC)
-	$(RUSTC) $(RUSTFLAGS) $< -o $@
+	$(RUSTC) $(RUSTFLAGS) $< --out-dir .
 	touch $@
 
 xlib-test: xlib.rc $(RUST_SRC)
-	$(RUSTC) $(RUSTFLAGS) $< -o $@ --test
+	$(RUSTC) $(RUSTFLAGS) $< --our-dir . --test
 
 .PHONY: check
 check: xlib-test
