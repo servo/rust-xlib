@@ -1061,6 +1061,23 @@ pub struct struct_unnamed1 {
     xdefaults: *c_char,
 }
 
+// Additions --pcwalton
+
+pub struct XVisualInfo {
+    visual: *Visual,
+    visualid: VisualID,
+    screen: c_int,
+    depth: c_int,
+    class: c_int,
+    red_mask: c_ulong,
+    green_mask: c_ulong,
+    blue_mask: c_ulong,
+    colormap_size: c_int,
+    bits_per_rgb: c_int,
+}
+
+pub static ZPixmap: c_int = 2;  // depth == drawable depth
+
 #[link_args="-lX11"]
 extern {
 
@@ -1468,7 +1485,7 @@ pub fn XGetFontProperty(arg0: *XFontStruct, arg1: Atom, arg2: *c_ulong) -> c_int
 
 pub fn XGetGCValues(arg0: *Display, arg1: GC, arg2: c_ulong, arg3: *XGCValues) -> c_int;
 
-pub fn XGetGeometry(arg0: *Display, arg1: Drawable, arg2: *Window, arg3: *c_int, arg4: *c_int, arg5: *c_uint, arg6: *c_uint, arg7: *c_uint, arg8: *c_uint) -> c_int;
+pub fn XGetGeometry(arg0: *Display, arg1: Drawable, arg2: *mut Window, arg3: *mut c_int, arg4: *mut c_int, arg5: *mut c_uint, arg6: *mut c_uint, arg7: *mut c_uint, arg8: *mut c_uint) -> c_int;
 
 pub fn XGetIconName(arg0: *Display, arg1: Window, arg2: **c_char) -> c_int;
 
