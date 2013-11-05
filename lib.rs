@@ -7,10 +7,6 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-#[link(name = "xlib",
-       vers = "0.1")];
-#[crate_type = "lib"];
-
 #[feature(globs)];
 
 extern mod std;
