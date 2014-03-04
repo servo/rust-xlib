@@ -8,6 +8,7 @@
 // except according to those terms.
 
 #[allow(non_uppercase_statics)];
+#[allow(non_camel_case_types)];
 
 use std::libc::*;
 
