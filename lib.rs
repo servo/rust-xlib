@@ -12,6 +12,6 @@
 
 #[feature(globs)];
 
-extern mod std;
+extern crate std;
 
 pub mod xlib;

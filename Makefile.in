@@ -9,7 +9,7 @@ RUST_SRC=$(shell find $(VPATH)/. -type f -name '*.rs')
 all:    libxlib.dummy
 
 libxlib.dummy: lib.rs $(RUST_SRC)
-	$(RUSTC) $(RUSTFLAGS) $< --lib --out-dir .
+	$(RUSTC) $(RUSTFLAGS) $< --crate-type=lib --out-dir .
 	touch $@
 
 xlib-test: lib.rs $(RUST_SRC)
