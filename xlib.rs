@@ -1063,16 +1063,16 @@ pub struct struct_unnamed1 {
 // Additions --pcwalton
 
 pub struct XVisualInfo {
-    visual: *Visual,
-    visualid: VisualID,
-    screen: c_int,
-    depth: c_int,
-    class: c_int,
-    red_mask: c_ulong,
-    green_mask: c_ulong,
-    blue_mask: c_ulong,
-    colormap_size: c_int,
-    bits_per_rgb: c_int,
+    pub visual: *Visual,
+    pub visualid: VisualID,
+    pub screen: c_int,
+    pub depth: c_int,
+    pub class: c_int,
+    pub red_mask: c_ulong,
+    pub green_mask: c_ulong,
+    pub blue_mask: c_ulong,
+    pub colormap_size: c_int,
+    pub bits_per_rgb: c_int,
 }
 
 pub static ZPixmap: c_int = 2;  // depth == drawable depth
