@@ -14,6 +14,7 @@
 
 #![feature(globs)]
 
+extern crate libc;
 extern crate std;
 
 pub mod xlib;
