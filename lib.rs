@@ -7,13 +7,14 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-#[crate_id = "github.com/mozilla-servo/rust-xlib#xlib:0.1"];
-#[crate_type = "lib"];
-#[crate_type = "dylib"];
-#[crate_type = "rlib"];
+#![crate_id = "github.com/mozilla-servo/rust-xlib#xlib:0.1"]
+#![crate_type = "lib"]
+#![crate_type = "dylib"]
+#![crate_type = "rlib"]
 
-#[feature(globs)];
+#![feature(globs)]
 
+extern crate libc;
 extern crate std;
 
 pub mod xlib;
