@@ -11,6 +11,7 @@
 #![allow(non_camel_case_types)]
 
 use libc::*;
+use libc::types::os::arch::c95::wchar_t;
 
 pub type XID = c_ulong;
 
