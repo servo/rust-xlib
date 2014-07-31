@@ -41,12 +41,12 @@ pub type KeySym = XID;
 
 pub type KeyCode = c_uchar;
 
-pub type XPointer = *c_char;
+pub type XPointer = *mut c_char;
 
 pub struct struct__XExtData {
     pub number: c_int,
-    pub next: *c_void /* struct__XExtData */,
-    pub free_private: *u8,
+    pub next: *mut c_void /* struct__XExtData */,
+    pub free_private: *mut u8,
     pub private_data: XPointer,
 }
 
@@ -93,10 +93,10 @@ pub struct XGCValues {
 
 pub type struct__XGC = c_void;
 
-pub type GC = *struct__XGC;
+pub type GC = *mut struct__XGC;
 
 pub struct Visual {
-    pub ext_data: *XExtData,
+    pub ext_data: *mut XExtData,
     pub visualid: VisualID,
     pub _class: c_int,
     pub red_mask: c_ulong,
@@ -109,24 +109,24 @@ pub struct Visual {
 pub struct Depth {
     pub depth: c_int,
     pub nvisuals: c_int,
-    pub visuals: *Visual,
+    pub visuals: *mut Visual,
 }
 
 pub type struct__XDisplay = c_void;
 
 pub struct Screen {
-    pub ext_data: *XExtData,
-    pub display: *c_void /* struct__XDisplay */,
+    pub ext_data: *mut XExtData,
+    pub display: *mut c_void /* struct__XDisplay */,
     pub root: Window,
     pub width: c_int,
     pub height: c_int,
     pub mwidth: c_int,
     pub mheight: c_int,
     pub ndepths: c_int,
-    pub depths: *Depth,
+    pub depths: *mut Depth,
     pub root_depth: c_int,
-    pub root_visual: *Visual,
-    pub default_gc: *c_void /* GC */,
+    pub root_visual: *mut Visual,
+    pub default_gc: *mut c_void /* GC */,
     pub cmap: Colormap,
     pub white_pixel: c_ulong,
     pub black_pixel: c_ulong,
@@ -138,7 +138,7 @@ pub struct Screen {
 }
 
 pub struct ScreenFormat {
-    pub ext_data: *XExtData,
+    pub ext_data: *mut XExtData,
     pub depth: c_int,
     pub bits_per_pixel: c_int,
     pub scanline_pad: c_int,
@@ -169,7 +169,7 @@ pub struct XWindowAttributes {
     pub height: c_int,
     pub border_width: c_int,
     pub depth: c_int,
-    pub visual: *Visual,
+    pub visual: *mut Visual,
     pub root: Window,
     pub _class: c_int,
     pub bit_gravity: c_int,
@@ -185,20 +185,20 @@ pub struct XWindowAttributes {
     pub your_event_mask: c_long,
     pub do_not_propagate_mask: c_long,
     pub override_redirect: c_int,
-    pub screen: *Screen,
+    pub screen: *mut Screen,
 }
 
 pub struct XHostAddress {
     pub family: c_int,
     pub length: c_int,
-    pub address: *c_char,
+    pub address: *mut c_char,
 }
 
 pub struct XServerInterpretedAddress {
     pub typelength: c_int,
     pub valuelength: c_int,
-    pub _type: *c_char,
-    pub value: *c_char,
+    pub _type: *mut c_char,
+    pub value: *mut c_char,
 }
 
 pub struct struct__XImage {
@@ -206,7 +206,7 @@ pub struct struct__XImage {
     pub height: c_int,
     pub xoffset: c_int,
     pub format: c_int,
-    pub data: *c_char,
+    pub data: *mut c_char,
     pub byte_order: c_int,
     pub bitmap_unit: c_int,
     pub bitmap_bit_order: c_int,
@@ -222,12 +222,12 @@ pub struct struct__XImage {
 }
 
 pub struct struct_funcs {
-    pub create_image: *u8,
-    pub destroy_image: *u8,
-    pub get_pixel: *u8,
-    pub put_pixel: *u8,
-    pub sub_image: *u8,
-    pub add_pixel: *u8,
+    pub create_image: *mut u8,
+    pub destroy_image: *mut u8,
+    pub get_pixel: *mut u8,
+    pub put_pixel: *mut u8,
+    pub sub_image: *mut u8,
+    pub add_pixel: *mut u8,
 }
 
 pub type XImage = struct__XImage;
@@ -308,7 +308,7 @@ pub struct XTimeCoord {
 
 pub struct XModifierKeymap {
     pub max_keypermod: c_int,
-    pub modifiermap: *KeyCode,
+    pub modifiermap: *mut KeyCode,
 }
 
 pub type Display = struct__XDisplay;
@@ -317,13 +317,13 @@ pub type struct__XPrivate = c_void;
 
 pub type struct__XrmHashBucketRec = c_void;
 
-pub type _XPrivDisplay = *struct_unnamed1;
+pub type _XPrivDisplay = *mut struct_unnamed1;
 
 pub struct XKeyEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub root: Window,
     pub subwindow: Window,
@@ -345,7 +345,7 @@ pub struct XButtonEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub root: Window,
     pub subwindow: Window,
@@ -367,7 +367,7 @@ pub struct XMotionEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub root: Window,
     pub subwindow: Window,
@@ -387,7 +387,7 @@ pub struct XCrossingEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub root: Window,
     pub subwindow: Window,
@@ -411,7 +411,7 @@ pub struct XFocusChangeEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub mode: c_int,
     pub detail: c_int,
@@ -425,7 +425,7 @@ pub struct XKeymapEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub key_vector: (c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char),
 }
@@ -434,7 +434,7 @@ pub struct XExposeEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub x: c_int,
     pub y: c_int,
@@ -447,7 +447,7 @@ pub struct XGraphicsExposeEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub drawable: Drawable,
     pub x: c_int,
     pub y: c_int,
@@ -462,7 +462,7 @@ pub struct XNoExposeEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub drawable: Drawable,
     pub major_code: c_int,
     pub minor_code: c_int,
@@ -472,7 +472,7 @@ pub struct XVisibilityEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub state: c_int,
 }
@@ -481,7 +481,7 @@ pub struct XCreateWindowEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub parent: Window,
     pub window: Window,
     pub x: c_int,
@@ -496,7 +496,7 @@ pub struct XDestroyWindowEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub event: Window,
     pub window: Window,
 }
@@ -505,7 +505,7 @@ pub struct XUnmapEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub event: Window,
     pub window: Window,
     pub from_configure: c_int,
@@ -515,7 +515,7 @@ pub struct XMapEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub event: Window,
     pub window: Window,
     pub override_redirect: c_int,
@@ -525,7 +525,7 @@ pub struct XMapRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub parent: Window,
     pub window: Window,
 }
@@ -534,7 +534,7 @@ pub struct XReparentEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub event: Window,
     pub window: Window,
     pub parent: Window,
@@ -547,7 +547,7 @@ pub struct XConfigureEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub event: Window,
     pub window: Window,
     pub x: c_int,
@@ -563,7 +563,7 @@ pub struct XGravityEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub event: Window,
     pub window: Window,
     pub x: c_int,
@@ -574,7 +574,7 @@ pub struct XResizeRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub width: c_int,
     pub height: c_int,
@@ -584,7 +584,7 @@ pub struct XConfigureRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub parent: Window,
     pub window: Window,
     pub x: c_int,
@@ -601,7 +601,7 @@ pub struct XCirculateEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub event: Window,
     pub window: Window,
     pub place: c_int,
@@ -611,7 +611,7 @@ pub struct XCirculateRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub parent: Window,
     pub window: Window,
     pub place: c_int,
@@ -621,7 +621,7 @@ pub struct XPropertyEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub atom: Atom,
     pub time: Time,
@@ -632,7 +632,7 @@ pub struct XSelectionClearEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub selection: Atom,
     pub time: Time,
@@ -642,7 +642,7 @@ pub struct XSelectionRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub owner: Window,
     pub requestor: Window,
     pub selection: Atom,
@@ -655,7 +655,7 @@ pub struct XSelectionEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub requestor: Window,
     pub selection: Atom,
     pub target: Atom,
@@ -667,7 +667,7 @@ pub struct XColormapEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub colormap: Colormap,
     pub _new: c_int,
@@ -678,7 +678,7 @@ pub struct XClientMessageEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub message_type: Atom,
     pub format: c_int,
@@ -689,7 +689,7 @@ pub struct XMappingEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
     pub request: c_int,
     pub first_keycode: c_int,
@@ -698,7 +698,7 @@ pub struct XMappingEvent {
 
 pub struct XErrorEvent {
     pub _type: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub resourceid: XID,
     pub serial: c_ulong,
     pub error_code: c_uchar,
@@ -710,7 +710,7 @@ pub struct XAnyEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub window: Window,
 }
 
@@ -718,7 +718,7 @@ pub struct XGenericEvent {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub extension: c_int,
     pub evtype: c_int,
 }
@@ -727,11 +727,11 @@ pub struct XGenericEventCookie {
     pub _type: c_int,
     pub serial: c_ulong,
     pub send_event: c_int,
-    pub display: *Display,
+    pub display: *mut Display,
     pub extension: c_int,
     pub evtype: c_int,
     pub cookie: c_uint,
-    pub data: *c_void,
+    pub data: *mut c_void,
 }
 
 pub type union__XEvent = c_void /* FIXME: union type */;
@@ -753,7 +753,7 @@ pub struct XFontProp {
 }
 
 pub struct XFontStruct {
-    pub ext_data: *XExtData,
+    pub ext_data: *mut XExtData,
     pub fid: Font,
     pub direction: c_uint,
     pub min_char_or_byte2: c_uint,
@@ -763,16 +763,16 @@ pub struct XFontStruct {
     pub all_chars_exist: c_int,
     pub default_char: c_uint,
     pub n_properties: c_int,
-    pub properties: *XFontProp,
+    pub properties: *mut XFontProp,
     pub min_bounds: XCharStruct,
     pub max_bounds: XCharStruct,
-    pub per_char: *XCharStruct,
+    pub per_char: *mut XCharStruct,
     pub ascent: c_int,
     pub descent: c_int,
 }
 
 pub struct XTextItem {
-    pub chars: *c_char,
+    pub chars: *mut c_char,
     pub nchars: c_int,
     pub delta: c_int,
     pub font: Font,
@@ -784,7 +784,7 @@ pub struct XChar2b {
 }
 
 pub struct XTextItem16 {
-    pub chars: *XChar2b,
+    pub chars: *mut XChar2b,
     pub nchars: c_int,
     pub delta: c_int,
     pub font: Font,
@@ -799,31 +799,31 @@ pub struct XFontSetExtents {
 
 pub type struct__XOM = c_void;
 
-pub type XOM = *struct__XOM;
+pub type XOM = *mut struct__XOM;
 
 pub type struct__XOC = c_void;
 
-pub type XOC = *struct__XOC;
+pub type XOC = *mut struct__XOC;
 
-pub type XFontSet = *struct__XOC;
+pub type XFontSet = *mut struct__XOC;
 
 pub struct XmbTextItem {
-    pub chars: *c_char,
+    pub chars: *mut c_char,
     pub nchars: c_int,
     pub delta: c_int,
-    pub font_set: *c_void /* XFontSet */,
+    pub font_set: *mut c_void /* XFontSet */,
 }
 
 pub struct XwcTextItem {
-    pub chars: *wchar_t,
+    pub chars: *mut wchar_t,
     pub nchars: c_int,
     pub delta: c_int,
-    pub font_set: *c_void /* XFontSet */,
+    pub font_set: *mut c_void /* XFontSet */,
 }
 
 pub struct XOMCharSetList {
     pub charset_count: c_int,
-    pub charset_list: **c_char,
+    pub charset_list: *mut *mut c_char,
 }
 
 
@@ -836,37 +836,37 @@ pub static XOMOrientation_Context: u32 = 4_u32;
 
 pub struct XOMOrientation {
     pub num_orientation: c_int,
-    pub orientation: *XOrientation,
+    pub orientation: *mut XOrientation,
 }
 
 pub struct XOMFontInfo {
     pub num_font: c_int,
-    pub font_struct_list: **XFontStruct,
-    pub font_name_list: **c_char,
+    pub font_struct_list: *mut *mut XFontStruct,
+    pub font_name_list: *mut *mut c_char,
 }
 
 pub type struct__XIM = c_void;
 
-pub type XIM = *struct__XIM;
+pub type XIM = *mut struct__XIM;
 
 pub type struct__XIC = c_void;
 
-pub type XIC = *struct__XIC;
+pub type XIC = *mut struct__XIC;
 
-pub type XIMProc = *u8;
+pub type XIMProc = *mut u8;
 
-pub type XICProc = *u8;
+pub type XICProc = *mut u8;
 
-pub type XIDProc = *u8;
+pub type XIDProc = *mut u8;
 
 pub type XIMStyle = c_ulong;
 
 pub struct XIMStyles {
     pub count_styles: c_ushort,
-    pub supported_styles: *XIMStyle,
+    pub supported_styles: *mut XIMStyle,
 }
 
-pub type XVaNestedList = *c_void;
+pub type XVaNestedList = *mut c_void;
 
 pub struct XIMCallback {
     pub client_data: XPointer,
@@ -882,7 +882,7 @@ pub type XIMFeedback = c_ulong;
 
 pub struct struct__XIMText {
     pub length: c_ushort,
-    pub feedback: *XIMFeedback,
+    pub feedback: *mut XIMFeedback,
     pub encoding_is_wchar: c_int,
     pub string: union_unnamed3,
 }
@@ -903,7 +903,7 @@ pub type XIMStringConversionFeedback = c_ulong;
 
 pub struct struct__XIMStringConversionText {
     pub length: c_ushort,
-    pub feedback: *XIMStringConversionFeedback,
+    pub feedback: *mut XIMStringConversionFeedback,
     pub encoding_is_wchar: c_int,
     pub string: union_unnamed4,
 }
@@ -936,7 +936,7 @@ pub struct struct__XIMStringConversionCallbackStruct {
     pub direction: XIMCaretDirection,
     pub operation: XIMStringConversionOperation,
     pub factor: c_ushort,
-    pub text: *XIMStringConversionText,
+    pub text: *mut XIMStringConversionText,
 }
 
 pub type XIMStringConversionCallbackStruct = struct__XIMStringConversionCallbackStruct;
@@ -945,7 +945,7 @@ pub struct struct__XIMPreeditDrawCallbackStruct {
     pub caret: c_int,
     pub chg_first: c_int,
     pub chg_length: c_int,
-    pub text: *XIMText,
+    pub text: *mut XIMText,
 }
 
 pub type XIMPreeditDrawCallbackStruct = struct__XIMPreeditDrawCallbackStruct;
@@ -986,7 +986,7 @@ pub type XIMHotKeyTrigger = struct__XIMHotKeyTrigger;
 
 pub struct struct__XIMHotKeyTriggers {
     pub num_hot_key: c_int,
-    pub key: *XIMHotKeyTrigger,
+    pub key: *mut XIMHotKeyTrigger,
 }
 
 pub type XIMHotKeyTriggers = struct__XIMHotKeyTriggers;
@@ -995,16 +995,16 @@ pub type XIMHotKeyState = c_ulong;
 
 pub struct XIMValuesList {
     pub count_values: c_ushort,
-    pub supported_values: **c_char,
+    pub supported_values: *mut *mut c_char,
 }
 
 /* FIXME: global variable _Xdebug */
 
-pub type XErrorHandler = *u8;
+pub type XErrorHandler = *mut u8;
 
-pub type XIOErrorHandler = *u8;
+pub type XIOErrorHandler = *mut u8;
 
-pub type XConnectionWatchProc = *u8;
+pub type XConnectionWatchProc = *mut u8;
 
 pub type union_unnamed3 = c_void /* FIXME: union type */;
 
@@ -1015,28 +1015,28 @@ pub type union_unnamed2 = c_void /* FIXME: union type */;
 pub type union_unnamed4 = c_void /* FIXME: union type */;
 
 pub struct struct_unnamed1 {
-    pub ext_data: *XExtData,
-    pub private1: *c_void /* struct__XPrivate */,
+    pub ext_data: *mut XExtData,
+    pub private1: *mut c_void /* struct__XPrivate */,
     pub fd: c_int,
     pub private2: c_int,
     pub proto_major_version: c_int,
     pub proto_minor_version: c_int,
-    pub vendor: *c_char,
+    pub vendor: *mut c_char,
     pub private3: XID,
     pub private4: XID,
     pub private5: XID,
     pub private6: c_int,
-    pub resource_alloc: *u8,
+    pub resource_alloc: *mut u8,
     pub byte_order: c_int,
     pub bitmap_unit: c_int,
     pub bitmap_pad: c_int,
     pub bitmap_bit_order: c_int,
     pub nformats: c_int,
-    pub pixmap_format: *ScreenFormat,
+    pub pixmap_format: *mut ScreenFormat,
     pub private8: c_int,
     pub release: c_int,
-    pub private9: *c_void /* struct__XPrivate */,
-    pub private10: *c_void /* struct__XPrivate */,
+    pub private9: *mut c_void /* struct__XPrivate */,
+    pub private10: *mut c_void /* struct__XPrivate */,
     pub qlen: c_int,
     pub last_request_read: c_ulong,
     pub request: c_ulong,
@@ -1045,12 +1045,12 @@ pub struct struct_unnamed1 {
     pub private13: XPointer,
     pub private14: XPointer,
     pub max_request_size: c_uint,
-    pub db: *c_void /* struct__XrmHashBucketRec */,
-    pub private15: *u8,
-    pub display_name: *c_char,
+    pub db: *mut c_void /* struct__XrmHashBucketRec */,
+    pub private15: *mut u8,
+    pub display_name: *mut c_char,
     pub default_screen: c_int,
     pub nscreens: c_int,
-    pub screens: *Screen,
+    pub screens: *mut Screen,
     pub motion_buffer: c_ulong,
     pub private16: c_ulong,
     pub min_keycode: c_int,
@@ -1058,13 +1058,13 @@ pub struct struct_unnamed1 {
     pub private17: XPointer,
     pub private18: XPointer,
     pub private19: c_int,
-    pub xdefaults: *c_char,
+    pub xdefaults: *mut c_char,
 }
 
 // Additions --pcwalton
 
 pub struct XVisualInfo {
-    pub visual: *Visual,
+    pub visual: *mut Visual,
     pub visualid: VisualID,
     pub screen: c_int,
     pub depth: c_int,
@@ -1081,701 +1081,701 @@ pub static ZPixmap: c_int = 2;  // depth == drawable depth
 #[link(name="X11")]
 extern {
 
-    pub fn _Xmblen(arg0: *c_char, arg1: c_int) -> c_int;
+    pub fn _Xmblen(arg0: *mut c_char, arg1: c_int) -> c_int;
 
-    pub fn XLoadQueryFont(arg0: *Display, arg1: *c_char) -> *XFontStruct;
+    pub fn XLoadQueryFont(arg0: *mut Display, arg1: *mut c_char) -> *mut XFontStruct;
 
-    pub fn XQueryFont(arg0: *Display, arg1: XID) -> *XFontStruct;
+    pub fn XQueryFont(arg0: *mut Display, arg1: XID) -> *mut XFontStruct;
 
-    pub fn XGetMotionEvents(arg0: *Display, arg1: Window, arg2: Time, arg3: Time, arg4: *c_int) -> *XTimeCoord;
+    pub fn XGetMotionEvents(arg0: *mut Display, arg1: Window, arg2: Time, arg3: Time, arg4: *mut c_int) -> *mut XTimeCoord;
 
-    pub fn XDeleteModifiermapEntry(arg0: *XModifierKeymap, arg1: KeyCode, arg2: c_int) -> *XModifierKeymap;
+    pub fn XDeleteModifiermapEntry(arg0: *mut XModifierKeymap, arg1: KeyCode, arg2: c_int) -> *mut XModifierKeymap;
 
-    pub fn XGetModifierMapping(arg0: *Display) -> *XModifierKeymap;
+    pub fn XGetModifierMapping(arg0: *mut Display) -> *mut XModifierKeymap;
 
-    pub fn XInsertModifiermapEntry(arg0: *XModifierKeymap, arg1: KeyCode, arg2: c_int) -> *XModifierKeymap;
+    pub fn XInsertModifiermapEntry(arg0: *mut XModifierKeymap, arg1: KeyCode, arg2: c_int) -> *mut XModifierKeymap;
 
-    pub fn XNewModifiermap(arg0: c_int) -> *XModifierKeymap;
+    pub fn XNewModifiermap(arg0: c_int) -> *mut XModifierKeymap;
 
-    pub fn XCreateImage(arg0: *Display, arg1: *Visual, arg2: c_uint, arg3: c_int, arg4: c_int, arg5: *c_char, arg6: c_uint, arg7: c_uint, arg8: c_int, arg9: c_int) -> *XImage;
+    pub fn XCreateImage(arg0: *mut Display, arg1: *mut Visual, arg2: c_uint, arg3: c_int, arg4: c_int, arg5: *mut c_char, arg6: c_uint, arg7: c_uint, arg8: c_int, arg9: c_int) -> *mut XImage;
 
-    pub fn XInitImage(arg0: *XImage) -> c_int;
+    pub fn XInitImage(arg0: *mut XImage) -> c_int;
 
-    pub fn XGetImage(arg0: *Display, arg1: Drawable, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_ulong, arg7: c_int) -> *XImage;
+    pub fn XGetImage(arg0: *mut Display, arg1: Drawable, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_ulong, arg7: c_int) -> *mut XImage;
 
-    pub fn XGetSubImage(arg0: *Display, arg1: Drawable, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_ulong, arg7: c_int, arg8: *XImage, arg9: c_int, arg10: c_int) -> *XImage;
+    pub fn XGetSubImage(arg0: *mut Display, arg1: Drawable, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_ulong, arg7: c_int, arg8: *mut XImage, arg9: c_int, arg10: c_int) -> *mut XImage;
 
-    pub fn XOpenDisplay(arg0: *c_char) -> *Display;
+    pub fn XOpenDisplay(arg0: *mut c_char) -> *mut Display;
 
     pub fn XrmInitialize();
 
-    pub fn XFetchBytes(arg0: *Display, arg1: *c_int) -> *c_char;
+    pub fn XFetchBytes(arg0: *mut Display, arg1: *mut c_int) -> *mut c_char;
 
-    pub fn XFetchBuffer(arg0: *Display, arg1: *c_int, arg2: c_int) -> *c_char;
+    pub fn XFetchBuffer(arg0: *mut Display, arg1: *mut c_int, arg2: c_int) -> *mut c_char;
 
-    pub fn XGetAtomName(arg0: *Display, arg1: Atom) -> *c_char;
+    pub fn XGetAtomName(arg0: *mut Display, arg1: Atom) -> *mut c_char;
 
-    pub fn XGetAtomNames(arg0: *Display, arg1: *Atom, arg2: c_int, arg3: **c_char) -> c_int;
+    pub fn XGetAtomNames(arg0: *mut Display, arg1: *mut Atom, arg2: c_int, arg3: *mut *mut c_char) -> c_int;
 
-    pub fn XGetDefault(arg0: *Display, arg1: *c_char, arg2: *c_char) -> *c_char;
+    pub fn XGetDefault(arg0: *mut Display, arg1: *mut c_char, arg2: *mut c_char) -> *mut c_char;
 
-    pub fn XDisplayName(arg0: *c_char) -> *c_char;
+    pub fn XDisplayName(arg0: *mut c_char) -> *mut c_char;
 
-    pub fn XKeysymToString(arg0: KeySym) -> *c_char;
+    pub fn XKeysymToString(arg0: KeySym) -> *mut c_char;
 
-    pub fn XSynchronize(arg0: *Display, arg1: c_int) -> *u8;
+    pub fn XSynchronize(arg0: *mut Display, arg1: c_int) -> *mut u8;
 
-    pub fn XSetAfterFunction(arg0: *Display, arg1: *u8) -> *u8;
+    pub fn XSetAfterFunction(arg0: *mut Display, arg1: *mut u8) -> *mut u8;
 
-    pub fn XInternAtom(arg0: *Display, arg1: *c_char, arg2: c_int) -> Atom;
+    pub fn XInternAtom(arg0: *mut Display, arg1: *mut c_char, arg2: c_int) -> Atom;
 
-    pub fn XInternAtoms(arg0: *Display, arg1: **c_char, arg2: c_int, arg3: c_int, arg4: *Atom) -> c_int;
+    pub fn XInternAtoms(arg0: *mut Display, arg1: *mut *mut c_char, arg2: c_int, arg3: c_int, arg4: *mut Atom) -> c_int;
 
-    pub fn XCopyColormapAndFree(arg0: *Display, arg1: Colormap) -> Colormap;
+    pub fn XCopyColormapAndFree(arg0: *mut Display, arg1: Colormap) -> Colormap;
 
-    pub fn XCreateColormap(arg0: *Display, arg1: Window, arg2: *Visual, arg3: c_int) -> Colormap;
+    pub fn XCreateColormap(arg0: *mut Display, arg1: Window, arg2: *mut Visual, arg3: c_int) -> Colormap;
 
-    pub fn XCreatePixmapCursor(arg0: *Display, arg1: Pixmap, arg2: Pixmap, arg3: *XColor, arg4: *XColor, arg5: c_uint, arg6: c_uint) -> Cursor;
+    pub fn XCreatePixmapCursor(arg0: *mut Display, arg1: Pixmap, arg2: Pixmap, arg3: *mut XColor, arg4: *mut XColor, arg5: c_uint, arg6: c_uint) -> Cursor;
 
-    pub fn XCreateGlyphCursor(arg0: *Display, arg1: Font, arg2: Font, arg3: c_uint, arg4: c_uint, arg5: *XColor, arg6: *XColor) -> Cursor;
+    pub fn XCreateGlyphCursor(arg0: *mut Display, arg1: Font, arg2: Font, arg3: c_uint, arg4: c_uint, arg5: *mut XColor, arg6: *mut XColor) -> Cursor;
 
-    pub fn XCreateFontCursor(arg0: *Display, arg1: c_uint) -> Cursor;
+    pub fn XCreateFontCursor(arg0: *mut Display, arg1: c_uint) -> Cursor;
 
-    pub fn XLoadFont(arg0: *Display, arg1: *c_char) -> Font;
+    pub fn XLoadFont(arg0: *mut Display, arg1: *mut c_char) -> Font;
 
-    pub fn XCreateGC(arg0: *Display, arg1: Drawable, arg2: c_ulong, arg3: *XGCValues) -> GC;
+    pub fn XCreateGC(arg0: *mut Display, arg1: Drawable, arg2: c_ulong, arg3: *mut XGCValues) -> GC;
 
     pub fn XGContextFromGC(arg0: GC) -> GContext;
 
-    pub fn XFlushGC(arg0: *Display, arg1: GC);
+    pub fn XFlushGC(arg0: *mut Display, arg1: GC);
 
-    pub fn XCreatePixmap(arg0: *Display, arg1: Drawable, arg2: c_uint, arg3: c_uint, arg4: c_uint) -> Pixmap;
+    pub fn XCreatePixmap(arg0: *mut Display, arg1: Drawable, arg2: c_uint, arg3: c_uint, arg4: c_uint) -> Pixmap;
 
-    pub fn XCreateBitmapFromData(arg0: *Display, arg1: Drawable, arg2: *c_char, arg3: c_uint, arg4: c_uint) -> Pixmap;
+    pub fn XCreateBitmapFromData(arg0: *mut Display, arg1: Drawable, arg2: *mut c_char, arg3: c_uint, arg4: c_uint) -> Pixmap;
 
-    pub fn XCreatePixmapFromBitmapData(arg0: *Display, arg1: Drawable, arg2: *c_char, arg3: c_uint, arg4: c_uint, arg5: c_ulong, arg6: c_ulong, arg7: c_uint) -> Pixmap;
+    pub fn XCreatePixmapFromBitmapData(arg0: *mut Display, arg1: Drawable, arg2: *mut c_char, arg3: c_uint, arg4: c_uint, arg5: c_ulong, arg6: c_ulong, arg7: c_uint) -> Pixmap;
 
-    pub fn XCreateSimpleWindow(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_uint, arg7: c_ulong, arg8: c_ulong) -> Window;
+    pub fn XCreateSimpleWindow(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_uint, arg7: c_ulong, arg8: c_ulong) -> Window;
 
-    pub fn XGetSelectionOwner(arg0: *Display, arg1: Atom) -> Window;
+    pub fn XGetSelectionOwner(arg0: *mut Display, arg1: Atom) -> Window;
 
-    pub fn XCreateWindow(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_uint, arg9: *Visual, arg10: c_ulong, arg11: *XSetWindowAttributes) -> Window;
+    pub fn XCreateWindow(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_uint, arg9: *mut Visual, arg10: c_ulong, arg11: *mut XSetWindowAttributes) -> Window;
 
-    pub fn XListInstalledColormaps(arg0: *Display, arg1: Window, arg2: *c_int) -> *Colormap;
+    pub fn XListInstalledColormaps(arg0: *mut Display, arg1: Window, arg2: *mut c_int) -> *mut Colormap;
 
-    pub fn XListFonts(arg0: *Display, arg1: *c_char, arg2: c_int, arg3: *c_int) -> **c_char;
+    pub fn XListFonts(arg0: *mut Display, arg1: *mut c_char, arg2: c_int, arg3: *mut c_int) -> *mut *mut c_char;
 
-    pub fn XListFontsWithInfo(arg0: *Display, arg1: *c_char, arg2: c_int, arg3: *c_int, arg4: **XFontStruct) -> **c_char;
+    pub fn XListFontsWithInfo(arg0: *mut Display, arg1: *mut c_char, arg2: c_int, arg3: *mut c_int, arg4: *mut *mut XFontStruct) -> *mut *mut c_char;
 
-    pub fn XGetFontPath(arg0: *Display, arg1: *c_int) -> **c_char;
+    pub fn XGetFontPath(arg0: *mut Display, arg1: *mut c_int) -> *mut *mut c_char;
 
-    pub fn XListExtensions(arg0: *Display, arg1: *c_int) -> **c_char;
+    pub fn XListExtensions(arg0: *mut Display, arg1: *mut c_int) -> *mut *mut c_char;
 
-    pub fn XListProperties(arg0: *Display, arg1: Window, arg2: *c_int) -> *Atom;
+    pub fn XListProperties(arg0: *mut Display, arg1: Window, arg2: *mut c_int) -> *mut Atom;
 
-    pub fn XListHosts(arg0: *Display, arg1: *c_int, arg2: *c_int) -> *XHostAddress;
+    pub fn XListHosts(arg0: *mut Display, arg1: *mut c_int, arg2: *mut c_int) -> *mut XHostAddress;
 
-    pub fn XKeycodeToKeysym(arg0: *Display, arg1: KeyCode, arg2: c_int) -> KeySym;
+    pub fn XKeycodeToKeysym(arg0: *mut Display, arg1: KeyCode, arg2: c_int) -> KeySym;
 
-    pub fn XLookupKeysym(arg0: *XKeyEvent, arg1: c_int) -> KeySym;
+    pub fn XLookupKeysym(arg0: *mut XKeyEvent, arg1: c_int) -> KeySym;
 
-    pub fn XGetKeyboardMapping(arg0: *Display, arg1: KeyCode, arg2: c_int, arg3: *c_int) -> *KeySym;
+    pub fn XGetKeyboardMapping(arg0: *mut Display, arg1: KeyCode, arg2: c_int, arg3: *mut c_int) -> *mut KeySym;
 
-    pub fn XStringToKeysym(arg0: *c_char) -> KeySym;
+    pub fn XStringToKeysym(arg0: *mut c_char) -> KeySym;
 
-    pub fn XMaxRequestSize(arg0: *Display) -> c_long;
+    pub fn XMaxRequestSize(arg0: *mut Display) -> c_long;
 
-    pub fn XExtendedMaxRequestSize(arg0: *Display) -> c_long;
+    pub fn XExtendedMaxRequestSize(arg0: *mut Display) -> c_long;
 
-    pub fn XResourceManagerString(arg0: *Display) -> *c_char;
+    pub fn XResourceManagerString(arg0: *mut Display) -> *mut c_char;
 
-    pub fn XScreenResourceString(arg0: *Screen) -> *c_char;
+    pub fn XScreenResourceString(arg0: *mut Screen) -> *mut c_char;
 
-    pub fn XDisplayMotionBufferSize(arg0: *Display) -> c_ulong;
+    pub fn XDisplayMotionBufferSize(arg0: *mut Display) -> c_ulong;
 
-    pub fn XVisualIDFromVisual(arg0: *Visual) -> VisualID;
+    pub fn XVisualIDFromVisual(arg0: *mut Visual) -> VisualID;
 
     pub fn XInitThreads() -> c_int;
 
-    pub fn XLockDisplay(arg0: *Display);
+    pub fn XLockDisplay(arg0: *mut Display);
 
-    pub fn XUnlockDisplay(arg0: *Display);
+    pub fn XUnlockDisplay(arg0: *mut Display);
 
-    pub fn XInitExtension(arg0: *Display, arg1: *c_char) -> *XExtCodes;
+    pub fn XInitExtension(arg0: *mut Display, arg1: *mut c_char) -> *mut XExtCodes;
 
-    pub fn XAddExtension(arg0: *Display) -> *XExtCodes;
+    pub fn XAddExtension(arg0: *mut Display) -> *mut XExtCodes;
 
-    pub fn XFindOnExtensionList(arg0: **XExtData, arg1: c_int) -> *XExtData;
+    pub fn XFindOnExtensionList(arg0: *mut *mut XExtData, arg1: c_int) -> *mut XExtData;
 
-    pub fn XEHeadOfExtensionList(arg0: XEDataObject) -> **XExtData;
+    pub fn XEHeadOfExtensionList(arg0: XEDataObject) -> *mut *mut XExtData;
 
-    pub fn XRootWindow(arg0: *Display, arg1: c_int) -> Window;
+    pub fn XRootWindow(arg0: *mut Display, arg1: c_int) -> Window;
 
-    pub fn XDefaultRootWindow(arg0: *Display) -> Window;
+    pub fn XDefaultRootWindow(arg0: *mut Display) -> Window;
 
-    pub fn XRootWindowOfScreen(arg0: *Screen) -> Window;
+    pub fn XRootWindowOfScreen(arg0: *mut Screen) -> Window;
 
-    pub fn XDefaultVisual(arg0: *Display, arg1: c_int) -> *Visual;
+    pub fn XDefaultVisual(arg0: *mut Display, arg1: c_int) -> *mut Visual;
 
-    pub fn XDefaultVisualOfScreen(arg0: *Screen) -> *Visual;
+    pub fn XDefaultVisualOfScreen(arg0: *mut Screen) -> *mut Visual;
 
-    pub fn XDefaultGC(arg0: *Display, arg1: c_int) -> GC;
+    pub fn XDefaultGC(arg0: *mut Display, arg1: c_int) -> GC;
 
-    pub fn XDefaultGCOfScreen(arg0: *Screen) -> GC;
+    pub fn XDefaultGCOfScreen(arg0: *mut Screen) -> GC;
 
-    pub fn XBlackPixel(arg0: *Display, arg1: c_int) -> c_ulong;
+    pub fn XBlackPixel(arg0: *mut Display, arg1: c_int) -> c_ulong;
 
-    pub fn XWhitePixel(arg0: *Display, arg1: c_int) -> c_ulong;
+    pub fn XWhitePixel(arg0: *mut Display, arg1: c_int) -> c_ulong;
 
     pub fn XAllPlanes() -> c_ulong;
 
-    pub fn XBlackPixelOfScreen(arg0: *Screen) -> c_ulong;
+    pub fn XBlackPixelOfScreen(arg0: *mut Screen) -> c_ulong;
 
-    pub fn XWhitePixelOfScreen(arg0: *Screen) -> c_ulong;
+    pub fn XWhitePixelOfScreen(arg0: *mut Screen) -> c_ulong;
 
-    pub fn XNextRequest(arg0: *Display) -> c_ulong;
+    pub fn XNextRequest(arg0: *mut Display) -> c_ulong;
 
-    pub fn XLastKnownRequestProcessed(arg0: *Display) -> c_ulong;
+    pub fn XLastKnownRequestProcessed(arg0: *mut Display) -> c_ulong;
 
-    pub fn XServerVendor(arg0: *Display) -> *c_char;
+    pub fn XServerVendor(arg0: *mut Display) -> *mut c_char;
 
-    pub fn XDisplayString(arg0: *Display) -> *c_char;
+    pub fn XDisplayString(arg0: *mut Display) -> *mut c_char;
 
-    pub fn XDefaultColormap(arg0: *Display, arg1: c_int) -> Colormap;
+    pub fn XDefaultColormap(arg0: *mut Display, arg1: c_int) -> Colormap;
 
-    pub fn XDefaultColormapOfScreen(arg0: *Screen) -> Colormap;
+    pub fn XDefaultColormapOfScreen(arg0: *mut Screen) -> Colormap;
 
-    pub fn XDisplayOfScreen(arg0: *Screen) -> *Display;
+    pub fn XDisplayOfScreen(arg0: *mut Screen) -> *mut Display;
 
-    pub fn XScreenOfDisplay(arg0: *Display, arg1: c_int) -> *Screen;
+    pub fn XScreenOfDisplay(arg0: *mut Display, arg1: c_int) -> *mut Screen;
 
-    pub fn XDefaultScreenOfDisplay(arg0: *Display) -> *Screen;
+    pub fn XDefaultScreenOfDisplay(arg0: *mut Display) -> *mut Screen;
 
-    pub fn XEventMaskOfScreen(arg0: *Screen) -> c_long;
+    pub fn XEventMaskOfScreen(arg0: *mut Screen) -> c_long;
 
-    pub fn XScreenNumberOfScreen(arg0: *Screen) -> c_int;
+    pub fn XScreenNumberOfScreen(arg0: *mut Screen) -> c_int;
 
     pub fn XSetErrorHandler(arg0: XErrorHandler) -> XErrorHandler;
 
     pub fn XSetIOErrorHandler(arg0: XIOErrorHandler) -> XIOErrorHandler;
 
-    pub fn XListPixmapFormats(arg0: *Display, arg1: *c_int) -> *XPixmapFormatValues;
+    pub fn XListPixmapFormats(arg0: *mut Display, arg1: *mut c_int) -> *mut XPixmapFormatValues;
 
-    pub fn XListDepths(arg0: *Display, arg1: c_int, arg2: *c_int) -> *c_int;
+    pub fn XListDepths(arg0: *mut Display, arg1: c_int, arg2: *mut c_int) -> *mut c_int;
 
-    pub fn XReconfigureWMWindow(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_uint, arg4: *XWindowChanges) -> c_int;
+    pub fn XReconfigureWMWindow(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_uint, arg4: *mut XWindowChanges) -> c_int;
 
-    pub fn XGetWMProtocols(arg0: *Display, arg1: Window, arg2: **Atom, arg3: *c_int) -> c_int;
+    pub fn XGetWMProtocols(arg0: *mut Display, arg1: Window, arg2: *mut *mut Atom, arg3: *mut c_int) -> c_int;
 
-    pub fn XSetWMProtocols(arg0: *Display, arg1: Window, arg2: *Atom, arg3: c_int) -> c_int;
+    pub fn XSetWMProtocols(arg0: *mut Display, arg1: Window, arg2: *mut Atom, arg3: c_int) -> c_int;
 
-    pub fn XIconifyWindow(arg0: *Display, arg1: Window, arg2: c_int) -> c_int;
+    pub fn XIconifyWindow(arg0: *mut Display, arg1: Window, arg2: c_int) -> c_int;
 
-    pub fn XWithdrawWindow(arg0: *Display, arg1: Window, arg2: c_int) -> c_int;
+    pub fn XWithdrawWindow(arg0: *mut Display, arg1: Window, arg2: c_int) -> c_int;
 
-    pub fn XGetCommand(arg0: *Display, arg1: Window, arg2: ***c_char, arg3: *c_int) -> c_int;
+    pub fn XGetCommand(arg0: *mut Display, arg1: Window, arg2: *mut *mut *mut c_char, arg3: *mut c_int) -> c_int;
 
-    pub fn XGetWMColormapWindows(arg0: *Display, arg1: Window, arg2: **Window, arg3: *c_int) -> c_int;
+    pub fn XGetWMColormapWindows(arg0: *mut Display, arg1: Window, arg2: *mut *mut Window, arg3: *mut c_int) -> c_int;
 
-    pub fn XSetWMColormapWindows(arg0: *Display, arg1: Window, arg2: *Window, arg3: c_int) -> c_int;
+    pub fn XSetWMColormapWindows(arg0: *mut Display, arg1: Window, arg2: *mut Window, arg3: c_int) -> c_int;
 
-    pub fn XFreeStringList(arg0: **c_char);
+    pub fn XFreeStringList(arg0: *mut *mut c_char);
 
-    pub fn XSetTransientForHint(arg0: *Display, arg1: Window, arg2: Window) -> c_int;
+    pub fn XSetTransientForHint(arg0: *mut Display, arg1: Window, arg2: Window) -> c_int;
 
-    pub fn XActivateScreenSaver(arg0: *Display) -> c_int;
+    pub fn XActivateScreenSaver(arg0: *mut Display) -> c_int;
 
-    pub fn XAddHost(arg0: *Display, arg1: *XHostAddress) -> c_int;
+    pub fn XAddHost(arg0: *mut Display, arg1: *mut XHostAddress) -> c_int;
 
-    pub fn XAddHosts(arg0: *Display, arg1: *XHostAddress, arg2: c_int) -> c_int;
+    pub fn XAddHosts(arg0: *mut Display, arg1: *mut XHostAddress, arg2: c_int) -> c_int;
 
-    pub fn XAddToExtensionList(arg0: **struct__XExtData, arg1: *XExtData) -> c_int;
+    pub fn XAddToExtensionList(arg0: *mut *mut struct__XExtData, arg1: *mut XExtData) -> c_int;
 
-    pub fn XAddToSaveSet(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XAddToSaveSet(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XAllocColor(arg0: *Display, arg1: Colormap, arg2: *XColor) -> c_int;
+    pub fn XAllocColor(arg0: *mut Display, arg1: Colormap, arg2: *mut XColor) -> c_int;
 
-    pub fn XAllocColorCells(arg0: *Display, arg1: Colormap, arg2: c_int, arg3: *c_ulong, arg4: c_uint, arg5: *c_ulong, arg6: c_uint) -> c_int;
+    pub fn XAllocColorCells(arg0: *mut Display, arg1: Colormap, arg2: c_int, arg3: *mut c_ulong, arg4: c_uint, arg5: *mut c_ulong, arg6: c_uint) -> c_int;
 
-    pub fn XAllocColorPlanes(arg0: *Display, arg1: Colormap, arg2: c_int, arg3: *c_ulong, arg4: c_int, arg5: c_int, arg6: c_int, arg7: c_int, arg8: *c_ulong, arg9: *c_ulong, arg10: *c_ulong) -> c_int;
+    pub fn XAllocColorPlanes(arg0: *mut Display, arg1: Colormap, arg2: c_int, arg3: *mut c_ulong, arg4: c_int, arg5: c_int, arg6: c_int, arg7: c_int, arg8: *mut c_ulong, arg9: *mut c_ulong, arg10: *mut c_ulong) -> c_int;
 
-    pub fn XAllocNamedColor(arg0: *Display, arg1: Colormap, arg2: *c_char, arg3: *XColor, arg4: *XColor) -> c_int;
+    pub fn XAllocNamedColor(arg0: *mut Display, arg1: Colormap, arg2: *mut c_char, arg3: *mut XColor, arg4: *mut XColor) -> c_int;
 
-    pub fn XAllowEvents(arg0: *Display, arg1: c_int, arg2: Time) -> c_int;
+    pub fn XAllowEvents(arg0: *mut Display, arg1: c_int, arg2: Time) -> c_int;
 
-    pub fn XAutoRepeatOff(arg0: *Display) -> c_int;
+    pub fn XAutoRepeatOff(arg0: *mut Display) -> c_int;
 
-    pub fn XAutoRepeatOn(arg0: *Display) -> c_int;
+    pub fn XAutoRepeatOn(arg0: *mut Display) -> c_int;
 
-    pub fn XBell(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XBell(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XBitmapBitOrder(arg0: *Display) -> c_int;
+    pub fn XBitmapBitOrder(arg0: *mut Display) -> c_int;
 
-    pub fn XBitmapPad(arg0: *Display) -> c_int;
+    pub fn XBitmapPad(arg0: *mut Display) -> c_int;
 
-    pub fn XBitmapUnit(arg0: *Display) -> c_int;
+    pub fn XBitmapUnit(arg0: *mut Display) -> c_int;
 
-    pub fn XCellsOfScreen(arg0: *Screen) -> c_int;
+    pub fn XCellsOfScreen(arg0: *mut Screen) -> c_int;
 
-    pub fn XChangeActivePointerGrab(arg0: *Display, arg1: c_uint, arg2: Cursor, arg3: Time) -> c_int;
+    pub fn XChangeActivePointerGrab(arg0: *mut Display, arg1: c_uint, arg2: Cursor, arg3: Time) -> c_int;
 
-    pub fn XChangeGC(arg0: *Display, arg1: GC, arg2: c_ulong, arg3: *XGCValues) -> c_int;
+    pub fn XChangeGC(arg0: *mut Display, arg1: GC, arg2: c_ulong, arg3: *mut XGCValues) -> c_int;
 
-    pub fn XChangeKeyboardControl(arg0: *Display, arg1: c_ulong, arg2: *XKeyboardControl) -> c_int;
+    pub fn XChangeKeyboardControl(arg0: *mut Display, arg1: c_ulong, arg2: *mut XKeyboardControl) -> c_int;
 
-    pub fn XChangeKeyboardMapping(arg0: *Display, arg1: c_int, arg2: c_int, arg3: *KeySym, arg4: c_int) -> c_int;
+    pub fn XChangeKeyboardMapping(arg0: *mut Display, arg1: c_int, arg2: c_int, arg3: *mut KeySym, arg4: c_int) -> c_int;
 
-    pub fn XChangePointerControl(arg0: *Display, arg1: c_int, arg2: c_int, arg3: c_int, arg4: c_int, arg5: c_int) -> c_int;
+    pub fn XChangePointerControl(arg0: *mut Display, arg1: c_int, arg2: c_int, arg3: c_int, arg4: c_int, arg5: c_int) -> c_int;
 
-    pub fn XChangeProperty(arg0: *Display, arg1: Window, arg2: Atom, arg3: Atom, arg4: c_int, arg5: c_int, arg6: *c_uchar, arg7: c_int) -> c_int;
+    pub fn XChangeProperty(arg0: *mut Display, arg1: Window, arg2: Atom, arg3: Atom, arg4: c_int, arg5: c_int, arg6: *mut c_uchar, arg7: c_int) -> c_int;
 
-    pub fn XChangeSaveSet(arg0: *Display, arg1: Window, arg2: c_int) -> c_int;
+    pub fn XChangeSaveSet(arg0: *mut Display, arg1: Window, arg2: c_int) -> c_int;
 
-    pub fn XChangeWindowAttributes(arg0: *Display, arg1: Window, arg2: c_ulong, arg3: *XSetWindowAttributes) -> c_int;
+    pub fn XChangeWindowAttributes(arg0: *mut Display, arg1: Window, arg2: c_ulong, arg3: *mut XSetWindowAttributes) -> c_int;
 
-    pub fn XCheckIfEvent(arg0: *Display, arg1: *XEvent, arg2: *u8, arg3: XPointer) -> c_int;
+    pub fn XCheckIfEvent(arg0: *mut Display, arg1: *mut XEvent, arg2: *mut u8, arg3: XPointer) -> c_int;
 
-    pub fn XCheckMaskEvent(arg0: *Display, arg1: c_long, arg2: *XEvent) -> c_int;
+    pub fn XCheckMaskEvent(arg0: *mut Display, arg1: c_long, arg2: *mut XEvent) -> c_int;
 
-    pub fn XCheckTypedEvent(arg0: *Display, arg1: c_int, arg2: *XEvent) -> c_int;
+    pub fn XCheckTypedEvent(arg0: *mut Display, arg1: c_int, arg2: *mut XEvent) -> c_int;
 
-    pub fn XCheckTypedWindowEvent(arg0: *Display, arg1: Window, arg2: c_int, arg3: *XEvent) -> c_int;
+    pub fn XCheckTypedWindowEvent(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: *mut XEvent) -> c_int;
 
-    pub fn XCheckWindowEvent(arg0: *Display, arg1: Window, arg2: c_long, arg3: *XEvent) -> c_int;
+    pub fn XCheckWindowEvent(arg0: *mut Display, arg1: Window, arg2: c_long, arg3: *mut XEvent) -> c_int;
 
-    pub fn XCirculateSubwindows(arg0: *Display, arg1: Window, arg2: c_int) -> c_int;
+    pub fn XCirculateSubwindows(arg0: *mut Display, arg1: Window, arg2: c_int) -> c_int;
 
-    pub fn XCirculateSubwindowsDown(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XCirculateSubwindowsDown(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XCirculateSubwindowsUp(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XCirculateSubwindowsUp(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XClearArea(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_int) -> c_int;
+    pub fn XClearArea(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint, arg6: c_int) -> c_int;
 
-    pub fn XClearWindow(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XClearWindow(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XCloseDisplay(arg0: *Display) -> c_int;
+    pub fn XCloseDisplay(arg0: *mut Display) -> c_int;
 
-    pub fn XConfigureWindow(arg0: *Display, arg1: Window, arg2: c_uint, arg3: *XWindowChanges) -> c_int;
+    pub fn XConfigureWindow(arg0: *mut Display, arg1: Window, arg2: c_uint, arg3: *mut XWindowChanges) -> c_int;
 
-    pub fn XConnectionNumber(arg0: *Display) -> c_int;
+    pub fn XConnectionNumber(arg0: *mut Display) -> c_int;
 
-    pub fn XConvertSelection(arg0: *Display, arg1: Atom, arg2: Atom, arg3: Atom, arg4: Window, arg5: Time) -> c_int;
+    pub fn XConvertSelection(arg0: *mut Display, arg1: Atom, arg2: Atom, arg3: Atom, arg4: Window, arg5: Time) -> c_int;
 
-    pub fn XCopyArea(arg0: *Display, arg1: Drawable, arg2: Drawable, arg3: GC, arg4: c_int, arg5: c_int, arg6: c_uint, arg7: c_uint, arg8: c_int, arg9: c_int) -> c_int;
+    pub fn XCopyArea(arg0: *mut Display, arg1: Drawable, arg2: Drawable, arg3: GC, arg4: c_int, arg5: c_int, arg6: c_uint, arg7: c_uint, arg8: c_int, arg9: c_int) -> c_int;
 
-    pub fn XCopyGC(arg0: *Display, arg1: GC, arg2: c_ulong, arg3: GC) -> c_int;
+    pub fn XCopyGC(arg0: *mut Display, arg1: GC, arg2: c_ulong, arg3: GC) -> c_int;
 
-    pub fn XCopyPlane(arg0: *Display, arg1: Drawable, arg2: Drawable, arg3: GC, arg4: c_int, arg5: c_int, arg6: c_uint, arg7: c_uint, arg8: c_int, arg9: c_int, arg10: c_ulong) -> c_int;
+    pub fn XCopyPlane(arg0: *mut Display, arg1: Drawable, arg2: Drawable, arg3: GC, arg4: c_int, arg5: c_int, arg6: c_uint, arg7: c_uint, arg8: c_int, arg9: c_int, arg10: c_ulong) -> c_int;
 
-    pub fn XDefaultDepth(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XDefaultDepth(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XDefaultDepthOfScreen(arg0: *Screen) -> c_int;
+    pub fn XDefaultDepthOfScreen(arg0: *mut Screen) -> c_int;
 
-    pub fn XDefaultScreen(arg0: *Display) -> c_int;
+    pub fn XDefaultScreen(arg0: *mut Display) -> c_int;
 
-    pub fn XDefineCursor(arg0: *Display, arg1: Window, arg2: Cursor) -> c_int;
+    pub fn XDefineCursor(arg0: *mut Display, arg1: Window, arg2: Cursor) -> c_int;
 
-    pub fn XDeleteProperty(arg0: *Display, arg1: Window, arg2: Atom) -> c_int;
+    pub fn XDeleteProperty(arg0: *mut Display, arg1: Window, arg2: Atom) -> c_int;
 
-    pub fn XDestroyWindow(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XDestroyWindow(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XDestroySubwindows(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XDestroySubwindows(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XDoesBackingStore(arg0: *Screen) -> c_int;
+    pub fn XDoesBackingStore(arg0: *mut Screen) -> c_int;
 
-    pub fn XDoesSaveUnders(arg0: *Screen) -> c_int;
+    pub fn XDoesSaveUnders(arg0: *mut Screen) -> c_int;
 
-    pub fn XDisableAccessControl(arg0: *Display) -> c_int;
+    pub fn XDisableAccessControl(arg0: *mut Display) -> c_int;
 
-    pub fn XDisplayCells(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XDisplayCells(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XDisplayHeight(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XDisplayHeight(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XDisplayHeightMM(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XDisplayHeightMM(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XDisplayKeycodes(arg0: *Display, arg1: *c_int, arg2: *c_int) -> c_int;
+    pub fn XDisplayKeycodes(arg0: *mut Display, arg1: *mut c_int, arg2: *mut c_int) -> c_int;
 
-    pub fn XDisplayPlanes(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XDisplayPlanes(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XDisplayWidth(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XDisplayWidth(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XDisplayWidthMM(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XDisplayWidthMM(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XDrawArc(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int) -> c_int;
+    pub fn XDrawArc(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int) -> c_int;
 
-    pub fn XDrawArcs(arg0: *Display, arg1: Drawable, arg2: GC, arg3: *XArc, arg4: c_int) -> c_int;
+    pub fn XDrawArcs(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: *mut XArc, arg4: c_int) -> c_int;
 
-    pub fn XDrawImageString(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *c_char, arg6: c_int) -> c_int;
+    pub fn XDrawImageString(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut c_char, arg6: c_int) -> c_int;
 
-    pub fn XDrawImageString16(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *XChar2b, arg6: c_int) -> c_int;
+    pub fn XDrawImageString16(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut XChar2b, arg6: c_int) -> c_int;
 
-    pub fn XDrawLine(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_int, arg6: c_int) -> c_int;
+    pub fn XDrawLine(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_int, arg6: c_int) -> c_int;
 
-    pub fn XDrawLines(arg0: *Display, arg1: Drawable, arg2: GC, arg3: *XPoint, arg4: c_int, arg5: c_int) -> c_int;
+    pub fn XDrawLines(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: *mut XPoint, arg4: c_int, arg5: c_int) -> c_int;
 
-    pub fn XDrawPoint(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int) -> c_int;
+    pub fn XDrawPoint(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int) -> c_int;
 
-    pub fn XDrawPoints(arg0: *Display, arg1: Drawable, arg2: GC, arg3: *XPoint, arg4: c_int, arg5: c_int) -> c_int;
+    pub fn XDrawPoints(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: *mut XPoint, arg4: c_int, arg5: c_int) -> c_int;
 
-    pub fn XDrawRectangle(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint) -> c_int;
+    pub fn XDrawRectangle(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint) -> c_int;
 
-    pub fn XDrawRectangles(arg0: *Display, arg1: Drawable, arg2: GC, arg3: *XRectangle, arg4: c_int) -> c_int;
+    pub fn XDrawRectangles(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: *mut XRectangle, arg4: c_int) -> c_int;
 
-    pub fn XDrawSegments(arg0: *Display, arg1: Drawable, arg2: GC, arg3: *XSegment, arg4: c_int) -> c_int;
+    pub fn XDrawSegments(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: *mut XSegment, arg4: c_int) -> c_int;
 
-    pub fn XDrawString(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *c_char, arg6: c_int) -> c_int;
+    pub fn XDrawString(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut c_char, arg6: c_int) -> c_int;
 
-    pub fn XDrawString16(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *XChar2b, arg6: c_int) -> c_int;
+    pub fn XDrawString16(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut XChar2b, arg6: c_int) -> c_int;
 
-    pub fn XDrawText(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *XTextItem, arg6: c_int) -> c_int;
+    pub fn XDrawText(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut XTextItem, arg6: c_int) -> c_int;
 
-    pub fn XDrawText16(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *XTextItem16, arg6: c_int) -> c_int;
+    pub fn XDrawText16(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut XTextItem16, arg6: c_int) -> c_int;
 
-    pub fn XEnableAccessControl(arg0: *Display) -> c_int;
+    pub fn XEnableAccessControl(arg0: *mut Display) -> c_int;
 
-    pub fn XEventsQueued(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XEventsQueued(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XFetchName(arg0: *Display, arg1: Window, arg2: **c_char) -> c_int;
+    pub fn XFetchName(arg0: *mut Display, arg1: Window, arg2: *mut *mut c_char) -> c_int;
 
-    pub fn XFillArc(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int) -> c_int;
+    pub fn XFillArc(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int) -> c_int;
 
-    pub fn XFillArcs(arg0: *Display, arg1: Drawable, arg2: GC, arg3: *XArc, arg4: c_int) -> c_int;
+    pub fn XFillArcs(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: *mut XArc, arg4: c_int) -> c_int;
 
-    pub fn XFillPolygon(arg0: *Display, arg1: Drawable, arg2: GC, arg3: *XPoint, arg4: c_int, arg5: c_int, arg6: c_int) -> c_int;
+    pub fn XFillPolygon(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: *mut XPoint, arg4: c_int, arg5: c_int, arg6: c_int) -> c_int;
 
-    pub fn XFillRectangle(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint) -> c_int;
+    pub fn XFillRectangle(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint) -> c_int;
 
-    pub fn XFillRectangles(arg0: *Display, arg1: Drawable, arg2: GC, arg3: *XRectangle, arg4: c_int) -> c_int;
+    pub fn XFillRectangles(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: *mut XRectangle, arg4: c_int) -> c_int;
 
-    pub fn XFlush(arg0: *Display) -> c_int;
+    pub fn XFlush(arg0: *mut Display) -> c_int;
 
-    pub fn XForceScreenSaver(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XForceScreenSaver(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XFree(arg0: *c_void) -> c_int;
+    pub fn XFree(arg0: *mut c_void) -> c_int;
 
-    pub fn XFreeColormap(arg0: *Display, arg1: Colormap) -> c_int;
+    pub fn XFreeColormap(arg0: *mut Display, arg1: Colormap) -> c_int;
 
-    pub fn XFreeColors(arg0: *Display, arg1: Colormap, arg2: *c_ulong, arg3: c_int, arg4: c_ulong) -> c_int;
+    pub fn XFreeColors(arg0: *mut Display, arg1: Colormap, arg2: *mut c_ulong, arg3: c_int, arg4: c_ulong) -> c_int;
 
-    pub fn XFreeCursor(arg0: *Display, arg1: Cursor) -> c_int;
+    pub fn XFreeCursor(arg0: *mut Display, arg1: Cursor) -> c_int;
 
-    pub fn XFreeExtensionList(arg0: **c_char) -> c_int;
+    pub fn XFreeExtensionList(arg0: *mut *mut c_char) -> c_int;
 
-    pub fn XFreeFont(arg0: *Display, arg1: *XFontStruct) -> c_int;
+    pub fn XFreeFont(arg0: *mut Display, arg1: *mut XFontStruct) -> c_int;
 
-    pub fn XFreeFontInfo(arg0: **c_char, arg1: *XFontStruct, arg2: c_int) -> c_int;
+    pub fn XFreeFontInfo(arg0: *mut *mut c_char, arg1: *mut XFontStruct, arg2: c_int) -> c_int;
 
-    pub fn XFreeFontNames(arg0: **c_char) -> c_int;
+    pub fn XFreeFontNames(arg0: *mut *mut c_char) -> c_int;
 
-    pub fn XFreeFontPath(arg0: **c_char) -> c_int;
+    pub fn XFreeFontPath(arg0: *mut *mut c_char) -> c_int;
 
-    pub fn XFreeGC(arg0: *Display, arg1: GC) -> c_int;
+    pub fn XFreeGC(arg0: *mut Display, arg1: GC) -> c_int;
 
-    pub fn XFreeModifiermap(arg0: *XModifierKeymap) -> c_int;
+    pub fn XFreeModifiermap(arg0: *mut XModifierKeymap) -> c_int;
 
-    pub fn XFreePixmap(arg0: *Display, arg1: Pixmap) -> c_int;
+    pub fn XFreePixmap(arg0: *mut Display, arg1: Pixmap) -> c_int;
 
-    pub fn XGeometry(arg0: *Display, arg1: c_int, arg2: *c_char, arg3: *c_char, arg4: c_uint, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int, arg9: *c_int, arg10: *c_int, arg11: *c_int, arg12: *c_int) -> c_int;
+    pub fn XGeometry(arg0: *mut Display, arg1: c_int, arg2: *mut c_char, arg3: *mut c_char, arg4: c_uint, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int, arg9: *mut c_int, arg10: *mut c_int, arg11: *mut c_int, arg12: *mut c_int) -> c_int;
 
-    pub fn XGetErrorDatabaseText(arg0: *Display, arg1: *c_char, arg2: *c_char, arg3: *c_char, arg4: *c_char, arg5: c_int) -> c_int;
+    pub fn XGetErrorDatabaseText(arg0: *mut Display, arg1: *mut c_char, arg2: *mut c_char, arg3: *mut c_char, arg4: *mut c_char, arg5: c_int) -> c_int;
 
-    pub fn XGetErrorText(arg0: *Display, arg1: c_int, arg2: *c_char, arg3: c_int) -> c_int;
+    pub fn XGetErrorText(arg0: *mut Display, arg1: c_int, arg2: *mut c_char, arg3: c_int) -> c_int;
 
-    pub fn XGetFontProperty(arg0: *XFontStruct, arg1: Atom, arg2: *c_ulong) -> c_int;
+    pub fn XGetFontProperty(arg0: *mut XFontStruct, arg1: Atom, arg2: *mut c_ulong) -> c_int;
 
-    pub fn XGetGCValues(arg0: *Display, arg1: GC, arg2: c_ulong, arg3: *XGCValues) -> c_int;
+    pub fn XGetGCValues(arg0: *mut Display, arg1: GC, arg2: c_ulong, arg3: *mut XGCValues) -> c_int;
 
-    pub fn XGetGeometry(arg0: *Display, arg1: Drawable, arg2: *mut Window, arg3: *mut c_int, arg4: *mut c_int, arg5: *mut c_uint, arg6: *mut c_uint, arg7: *mut c_uint, arg8: *mut c_uint) -> c_int;
+    pub fn XGetGeometry(arg0: *mut Display, arg1: Drawable, arg2: *mut Window, arg3: *mut c_int, arg4: *mut c_int, arg5: *mut c_uint, arg6: *mut c_uint, arg7: *mut c_uint, arg8: *mut c_uint) -> c_int;
 
-    pub fn XGetIconName(arg0: *Display, arg1: Window, arg2: **c_char) -> c_int;
+    pub fn XGetIconName(arg0: *mut Display, arg1: Window, arg2: *mut *mut c_char) -> c_int;
 
-    pub fn XGetInputFocus(arg0: *Display, arg1: *Window, arg2: *c_int) -> c_int;
+    pub fn XGetInputFocus(arg0: *mut Display, arg1: *mut Window, arg2: *mut c_int) -> c_int;
 
-    pub fn XGetKeyboardControl(arg0: *Display, arg1: *XKeyboardState) -> c_int;
+    pub fn XGetKeyboardControl(arg0: *mut Display, arg1: *mut XKeyboardState) -> c_int;
 
-    pub fn XGetPointerControl(arg0: *Display, arg1: *c_int, arg2: *c_int, arg3: *c_int) -> c_int;
+    pub fn XGetPointerControl(arg0: *mut Display, arg1: *mut c_int, arg2: *mut c_int, arg3: *mut c_int) -> c_int;
 
-    pub fn XGetPointerMapping(arg0: *Display, arg1: *c_uchar, arg2: c_int) -> c_int;
+    pub fn XGetPointerMapping(arg0: *mut Display, arg1: *mut c_uchar, arg2: c_int) -> c_int;
 
-    pub fn XGetScreenSaver(arg0: *Display, arg1: *c_int, arg2: *c_int, arg3: *c_int, arg4: *c_int) -> c_int;
+    pub fn XGetScreenSaver(arg0: *mut Display, arg1: *mut c_int, arg2: *mut c_int, arg3: *mut c_int, arg4: *mut c_int) -> c_int;
 
-    pub fn XGetTransientForHint(arg0: *Display, arg1: Window, arg2: *Window) -> c_int;
+    pub fn XGetTransientForHint(arg0: *mut Display, arg1: Window, arg2: *mut Window) -> c_int;
 
-    pub fn XGetWindowProperty(arg0: *Display, arg1: Window, arg2: Atom, arg3: c_long, arg4: c_long, arg5: c_int, arg6: Atom, arg7: *Atom, arg8: *c_int, arg9: *c_ulong, arg10: *c_ulong, arg11: **c_uchar) -> c_int;
+    pub fn XGetWindowProperty(arg0: *mut Display, arg1: Window, arg2: Atom, arg3: c_long, arg4: c_long, arg5: c_int, arg6: Atom, arg7: *mut Atom, arg8: *mut c_int, arg9: *mut c_ulong, arg10: *mut c_ulong, arg11: *mut *mut c_uchar) -> c_int;
 
-    pub fn XGetWindowAttributes(arg0: *Display, arg1: Window, arg2: *XWindowAttributes) -> c_int;
+    pub fn XGetWindowAttributes(arg0: *mut Display, arg1: Window, arg2: *mut XWindowAttributes) -> c_int;
 
-    pub fn XGrabButton(arg0: *Display, arg1: c_uint, arg2: c_uint, arg3: Window, arg4: c_int, arg5: c_uint, arg6: c_int, arg7: c_int, arg8: Window, arg9: Cursor) -> c_int;
+    pub fn XGrabButton(arg0: *mut Display, arg1: c_uint, arg2: c_uint, arg3: Window, arg4: c_int, arg5: c_uint, arg6: c_int, arg7: c_int, arg8: Window, arg9: Cursor) -> c_int;
 
-    pub fn XGrabKey(arg0: *Display, arg1: c_int, arg2: c_uint, arg3: Window, arg4: c_int, arg5: c_int, arg6: c_int) -> c_int;
+    pub fn XGrabKey(arg0: *mut Display, arg1: c_int, arg2: c_uint, arg3: Window, arg4: c_int, arg5: c_int, arg6: c_int) -> c_int;
 
-    pub fn XGrabKeyboard(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_int, arg5: Time) -> c_int;
+    pub fn XGrabKeyboard(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_int, arg5: Time) -> c_int;
 
-    pub fn XGrabPointer(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_uint, arg4: c_int, arg5: c_int, arg6: Window, arg7: Cursor, arg8: Time) -> c_int;
+    pub fn XGrabPointer(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_uint, arg4: c_int, arg5: c_int, arg6: Window, arg7: Cursor, arg8: Time) -> c_int;
 
-    pub fn XGrabServer(arg0: *Display) -> c_int;
+    pub fn XGrabServer(arg0: *mut Display) -> c_int;
 
-    pub fn XHeightMMOfScreen(arg0: *Screen) -> c_int;
+    pub fn XHeightMMOfScreen(arg0: *mut Screen) -> c_int;
 
-    pub fn XHeightOfScreen(arg0: *Screen) -> c_int;
+    pub fn XHeightOfScreen(arg0: *mut Screen) -> c_int;
 
-    pub fn XIfEvent(arg0: *Display, arg1: *XEvent, arg2: *u8, arg3: XPointer) -> c_int;
+    pub fn XIfEvent(arg0: *mut Display, arg1: *mut XEvent, arg2: *mut u8, arg3: XPointer) -> c_int;
 
-    pub fn XImageByteOrder(arg0: *Display) -> c_int;
+    pub fn XImageByteOrder(arg0: *mut Display) -> c_int;
 
-    pub fn XInstallColormap(arg0: *Display, arg1: Colormap) -> c_int;
+    pub fn XInstallColormap(arg0: *mut Display, arg1: Colormap) -> c_int;
 
-    pub fn XKeysymToKeycode(arg0: *Display, arg1: KeySym) -> KeyCode;
+    pub fn XKeysymToKeycode(arg0: *mut Display, arg1: KeySym) -> KeyCode;
 
-    pub fn XKillClient(arg0: *Display, arg1: XID) -> c_int;
+    pub fn XKillClient(arg0: *mut Display, arg1: XID) -> c_int;
 
-    pub fn XLookupColor(arg0: *Display, arg1: Colormap, arg2: *c_char, arg3: *XColor, arg4: *XColor) -> c_int;
+    pub fn XLookupColor(arg0: *mut Display, arg1: Colormap, arg2: *mut c_char, arg3: *mut XColor, arg4: *mut XColor) -> c_int;
 
-    pub fn XLowerWindow(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XLowerWindow(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XMapRaised(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XMapRaised(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XMapSubwindows(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XMapSubwindows(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XMapWindow(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XMapWindow(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XMaskEvent(arg0: *Display, arg1: c_long, arg2: *XEvent) -> c_int;
+    pub fn XMaskEvent(arg0: *mut Display, arg1: c_long, arg2: *mut XEvent) -> c_int;
 
-    pub fn XMaxCmapsOfScreen(arg0: *Screen) -> c_int;
+    pub fn XMaxCmapsOfScreen(arg0: *mut Screen) -> c_int;
 
-    pub fn XMinCmapsOfScreen(arg0: *Screen) -> c_int;
+    pub fn XMinCmapsOfScreen(arg0: *mut Screen) -> c_int;
 
-    pub fn XMoveResizeWindow(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint) -> c_int;
+    pub fn XMoveResizeWindow(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_int, arg4: c_uint, arg5: c_uint) -> c_int;
 
-    pub fn XMoveWindow(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_int) -> c_int;
+    pub fn XMoveWindow(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_int) -> c_int;
 
-    pub fn XNextEvent(arg0: *Display, arg1: *XEvent) -> c_int;
+    pub fn XNextEvent(arg0: *mut Display, arg1: *mut XEvent) -> c_int;
 
-    pub fn XNoOp(arg0: *Display) -> c_int;
+    pub fn XNoOp(arg0: *mut Display) -> c_int;
 
-    pub fn XParseColor(arg0: *Display, arg1: Colormap, arg2: *c_char, arg3: *XColor) -> c_int;
+    pub fn XParseColor(arg0: *mut Display, arg1: Colormap, arg2: *mut c_char, arg3: *mut XColor) -> c_int;
 
-    pub fn XParseGeometry(arg0: *c_char, arg1: *c_int, arg2: *c_int, arg3: *c_uint, arg4: *c_uint) -> c_int;
+    pub fn XParseGeometry(arg0: *mut c_char, arg1: *mut c_int, arg2: *mut c_int, arg3: *mut c_uint, arg4: *mut c_uint) -> c_int;
 
-    pub fn XPeekEvent(arg0: *Display, arg1: *XEvent) -> c_int;
+    pub fn XPeekEvent(arg0: *mut Display, arg1: *mut XEvent) -> c_int;
 
-    pub fn XPeekIfEvent(arg0: *Display, arg1: *XEvent, arg2: *u8, arg3: XPointer) -> c_int;
+    pub fn XPeekIfEvent(arg0: *mut Display, arg1: *mut XEvent, arg2: *mut u8, arg3: XPointer) -> c_int;
 
-    pub fn XPending(arg0: *Display) -> c_int;
+    pub fn XPending(arg0: *mut Display) -> c_int;
 
-    pub fn XPlanesOfScreen(arg0: *Screen) -> c_int;
+    pub fn XPlanesOfScreen(arg0: *mut Screen) -> c_int;
 
-    pub fn XProtocolRevision(arg0: *Display) -> c_int;
+    pub fn XProtocolRevision(arg0: *mut Display) -> c_int;
 
-    pub fn XProtocolVersion(arg0: *Display) -> c_int;
+    pub fn XProtocolVersion(arg0: *mut Display) -> c_int;
 
-    pub fn XPutBackEvent(arg0: *Display, arg1: *XEvent) -> c_int;
+    pub fn XPutBackEvent(arg0: *mut Display, arg1: *mut XEvent) -> c_int;
 
-    pub fn XPutImage(arg0: *Display, arg1: Drawable, arg2: GC, arg3: *XImage, arg4: c_int, arg5: c_int, arg6: c_int, arg7: c_int, arg8: c_uint, arg9: c_uint) -> c_int;
+    pub fn XPutImage(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: *mut XImage, arg4: c_int, arg5: c_int, arg6: c_int, arg7: c_int, arg8: c_uint, arg9: c_uint) -> c_int;
 
-    pub fn XQLength(arg0: *Display) -> c_int;
+    pub fn XQLength(arg0: *mut Display) -> c_int;
 
-    pub fn XQueryBestCursor(arg0: *Display, arg1: Drawable, arg2: c_uint, arg3: c_uint, arg4: *c_uint, arg5: *c_uint) -> c_int;
+    pub fn XQueryBestCursor(arg0: *mut Display, arg1: Drawable, arg2: c_uint, arg3: c_uint, arg4: *mut c_uint, arg5: *mut c_uint) -> c_int;
 
-    pub fn XQueryBestSize(arg0: *Display, arg1: c_int, arg2: Drawable, arg3: c_uint, arg4: c_uint, arg5: *c_uint, arg6: *c_uint) -> c_int;
+    pub fn XQueryBestSize(arg0: *mut Display, arg1: c_int, arg2: Drawable, arg3: c_uint, arg4: c_uint, arg5: *mut c_uint, arg6: *mut c_uint) -> c_int;
 
-    pub fn XQueryBestStipple(arg0: *Display, arg1: Drawable, arg2: c_uint, arg3: c_uint, arg4: *c_uint, arg5: *c_uint) -> c_int;
+    pub fn XQueryBestStipple(arg0: *mut Display, arg1: Drawable, arg2: c_uint, arg3: c_uint, arg4: *mut c_uint, arg5: *mut c_uint) -> c_int;
 
-    pub fn XQueryBestTile(arg0: *Display, arg1: Drawable, arg2: c_uint, arg3: c_uint, arg4: *c_uint, arg5: *c_uint) -> c_int;
+    pub fn XQueryBestTile(arg0: *mut Display, arg1: Drawable, arg2: c_uint, arg3: c_uint, arg4: *mut c_uint, arg5: *mut c_uint) -> c_int;
 
-    pub fn XQueryColor(arg0: *Display, arg1: Colormap, arg2: *XColor) -> c_int;
+    pub fn XQueryColor(arg0: *mut Display, arg1: Colormap, arg2: *mut XColor) -> c_int;
 
-    pub fn XQueryColors(arg0: *Display, arg1: Colormap, arg2: *XColor, arg3: c_int) -> c_int;
+    pub fn XQueryColors(arg0: *mut Display, arg1: Colormap, arg2: *mut XColor, arg3: c_int) -> c_int;
 
-    pub fn XQueryExtension(arg0: *Display, arg1: *c_char, arg2: *c_int, arg3: *c_int, arg4: *c_int) -> c_int;
+    pub fn XQueryExtension(arg0: *mut Display, arg1: *mut c_char, arg2: *mut c_int, arg3: *mut c_int, arg4: *mut c_int) -> c_int;
 
-    pub fn XQueryKeymap(arg0: *Display, arg1: *c_char) -> c_int;
+    pub fn XQueryKeymap(arg0: *mut Display, arg1: *mut c_char) -> c_int;
 
-    pub fn XQueryPointer(arg0: *Display, arg1: Window, arg2: *Window, arg3: *Window, arg4: *c_int, arg5: *c_int, arg6: *c_int, arg7: *c_int, arg8: *c_uint) -> c_int;
+    pub fn XQueryPointer(arg0: *mut Display, arg1: Window, arg2: *mut Window, arg3: *mut Window, arg4: *mut c_int, arg5: *mut c_int, arg6: *mut c_int, arg7: *mut c_int, arg8: *mut c_uint) -> c_int;
 
-    pub fn XQueryTextExtents(arg0: *Display, arg1: XID, arg2: *c_char, arg3: c_int, arg4: *c_int, arg5: *c_int, arg6: *c_int, arg7: *XCharStruct) -> c_int;
+    pub fn XQueryTextExtents(arg0: *mut Display, arg1: XID, arg2: *mut c_char, arg3: c_int, arg4: *mut c_int, arg5: *mut c_int, arg6: *mut c_int, arg7: *mut XCharStruct) -> c_int;
 
-    pub fn XQueryTextExtents16(arg0: *Display, arg1: XID, arg2: *XChar2b, arg3: c_int, arg4: *c_int, arg5: *c_int, arg6: *c_int, arg7: *XCharStruct) -> c_int;
+    pub fn XQueryTextExtents16(arg0: *mut Display, arg1: XID, arg2: *mut XChar2b, arg3: c_int, arg4: *mut c_int, arg5: *mut c_int, arg6: *mut c_int, arg7: *mut XCharStruct) -> c_int;
 
-    pub fn XQueryTree(arg0: *Display, arg1: Window, arg2: *Window, arg3: *Window, arg4: **Window, arg5: *c_uint) -> c_int;
+    pub fn XQueryTree(arg0: *mut Display, arg1: Window, arg2: *mut Window, arg3: *mut Window, arg4: *mut *mut Window, arg5: *mut c_uint) -> c_int;
 
-    pub fn XRaiseWindow(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XRaiseWindow(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XReadBitmapFile(arg0: *Display, arg1: Drawable, arg2: *c_char, arg3: *c_uint, arg4: *c_uint, arg5: *Pixmap, arg6: *c_int, arg7: *c_int) -> c_int;
+    pub fn XReadBitmapFile(arg0: *mut Display, arg1: Drawable, arg2: *mut c_char, arg3: *mut c_uint, arg4: *mut c_uint, arg5: *mut Pixmap, arg6: *mut c_int, arg7: *mut c_int) -> c_int;
 
-    pub fn XReadBitmapFileData(arg0: *c_char, arg1: *c_uint, arg2: *c_uint, arg3: **c_uchar, arg4: *c_int, arg5: *c_int) -> c_int;
+    pub fn XReadBitmapFileData(arg0: *mut c_char, arg1: *mut c_uint, arg2: *mut c_uint, arg3: *mut *mut c_uchar, arg4: *mut c_int, arg5: *mut c_int) -> c_int;
 
-    pub fn XRebindKeysym(arg0: *Display, arg1: KeySym, arg2: *KeySym, arg3: c_int, arg4: *c_uchar, arg5: c_int) -> c_int;
+    pub fn XRebindKeysym(arg0: *mut Display, arg1: KeySym, arg2: *mut KeySym, arg3: c_int, arg4: *mut c_uchar, arg5: c_int) -> c_int;
 
-    pub fn XRecolorCursor(arg0: *Display, arg1: Cursor, arg2: *XColor, arg3: *XColor) -> c_int;
+    pub fn XRecolorCursor(arg0: *mut Display, arg1: Cursor, arg2: *mut XColor, arg3: *mut XColor) -> c_int;
 
-    pub fn XRefreshKeyboardMapping(arg0: *XMappingEvent) -> c_int;
+    pub fn XRefreshKeyboardMapping(arg0: *mut XMappingEvent) -> c_int;
 
-    pub fn XRemoveFromSaveSet(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XRemoveFromSaveSet(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XRemoveHost(arg0: *Display, arg1: *XHostAddress) -> c_int;
+    pub fn XRemoveHost(arg0: *mut Display, arg1: *mut XHostAddress) -> c_int;
 
-    pub fn XRemoveHosts(arg0: *Display, arg1: *XHostAddress, arg2: c_int) -> c_int;
+    pub fn XRemoveHosts(arg0: *mut Display, arg1: *mut XHostAddress, arg2: c_int) -> c_int;
 
-    pub fn XReparentWindow(arg0: *Display, arg1: Window, arg2: Window, arg3: c_int, arg4: c_int) -> c_int;
+    pub fn XReparentWindow(arg0: *mut Display, arg1: Window, arg2: Window, arg3: c_int, arg4: c_int) -> c_int;
 
-    pub fn XResetScreenSaver(arg0: *Display) -> c_int;
+    pub fn XResetScreenSaver(arg0: *mut Display) -> c_int;
 
-    pub fn XResizeWindow(arg0: *Display, arg1: Window, arg2: c_uint, arg3: c_uint) -> c_int;
+    pub fn XResizeWindow(arg0: *mut Display, arg1: Window, arg2: c_uint, arg3: c_uint) -> c_int;
 
-    pub fn XRestackWindows(arg0: *Display, arg1: *Window, arg2: c_int) -> c_int;
+    pub fn XRestackWindows(arg0: *mut Display, arg1: *mut Window, arg2: c_int) -> c_int;
 
-    pub fn XRotateBuffers(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XRotateBuffers(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XRotateWindowProperties(arg0: *Display, arg1: Window, arg2: *Atom, arg3: c_int, arg4: c_int) -> c_int;
+    pub fn XRotateWindowProperties(arg0: *mut Display, arg1: Window, arg2: *mut Atom, arg3: c_int, arg4: c_int) -> c_int;
 
-    pub fn XScreenCount(arg0: *Display) -> c_int;
+    pub fn XScreenCount(arg0: *mut Display) -> c_int;
 
-    pub fn XSelectInput(arg0: *Display, arg1: Window, arg2: c_long) -> c_int;
+    pub fn XSelectInput(arg0: *mut Display, arg1: Window, arg2: c_long) -> c_int;
 
-    pub fn XSendEvent(arg0: *Display, arg1: Window, arg2: c_int, arg3: c_long, arg4: *XEvent) -> c_int;
+    pub fn XSendEvent(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: c_long, arg4: *mut XEvent) -> c_int;
 
-    pub fn XSetAccessControl(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XSetAccessControl(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XSetArcMode(arg0: *Display, arg1: GC, arg2: c_int) -> c_int;
+    pub fn XSetArcMode(arg0: *mut Display, arg1: GC, arg2: c_int) -> c_int;
 
-    pub fn XSetBackground(arg0: *Display, arg1: GC, arg2: c_ulong) -> c_int;
+    pub fn XSetBackground(arg0: *mut Display, arg1: GC, arg2: c_ulong) -> c_int;
 
-    pub fn XSetClipMask(arg0: *Display, arg1: GC, arg2: Pixmap) -> c_int;
+    pub fn XSetClipMask(arg0: *mut Display, arg1: GC, arg2: Pixmap) -> c_int;
 
-    pub fn XSetClipOrigin(arg0: *Display, arg1: GC, arg2: c_int, arg3: c_int) -> c_int;
+    pub fn XSetClipOrigin(arg0: *mut Display, arg1: GC, arg2: c_int, arg3: c_int) -> c_int;
 
-    pub fn XSetClipRectangles(arg0: *Display, arg1: GC, arg2: c_int, arg3: c_int, arg4: *XRectangle, arg5: c_int, arg6: c_int) -> c_int;
+    pub fn XSetClipRectangles(arg0: *mut Display, arg1: GC, arg2: c_int, arg3: c_int, arg4: *mut XRectangle, arg5: c_int, arg6: c_int) -> c_int;
 
-    pub fn XSetCloseDownMode(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XSetCloseDownMode(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XSetCommand(arg0: *Display, arg1: Window, arg2: **c_char, arg3: c_int) -> c_int;
+    pub fn XSetCommand(arg0: *mut Display, arg1: Window, arg2: *mut *mut c_char, arg3: c_int) -> c_int;
 
-    pub fn XSetDashes(arg0: *Display, arg1: GC, arg2: c_int, arg3: *c_char, arg4: c_int) -> c_int;
+    pub fn XSetDashes(arg0: *mut Display, arg1: GC, arg2: c_int, arg3: *mut c_char, arg4: c_int) -> c_int;
 
-    pub fn XSetFillRule(arg0: *Display, arg1: GC, arg2: c_int) -> c_int;
+    pub fn XSetFillRule(arg0: *mut Display, arg1: GC, arg2: c_int) -> c_int;
 
-    pub fn XSetFillStyle(arg0: *Display, arg1: GC, arg2: c_int) -> c_int;
+    pub fn XSetFillStyle(arg0: *mut Display, arg1: GC, arg2: c_int) -> c_int;
 
-    pub fn XSetFont(arg0: *Display, arg1: GC, arg2: Font) -> c_int;
+    pub fn XSetFont(arg0: *mut Display, arg1: GC, arg2: Font) -> c_int;
 
-    pub fn XSetFontPath(arg0: *Display, arg1: **c_char, arg2: c_int) -> c_int;
+    pub fn XSetFontPath(arg0: *mut Display, arg1: *mut *mut c_char, arg2: c_int) -> c_int;
 
-    pub fn XSetForeground(arg0: *Display, arg1: GC, arg2: c_ulong) -> c_int;
+    pub fn XSetForeground(arg0: *mut Display, arg1: GC, arg2: c_ulong) -> c_int;
 
-    pub fn XSetFunction(arg0: *Display, arg1: GC, arg2: c_int) -> c_int;
+    pub fn XSetFunction(arg0: *mut Display, arg1: GC, arg2: c_int) -> c_int;
 
-    pub fn XSetGraphicsExposures(arg0: *Display, arg1: GC, arg2: c_int) -> c_int;
+    pub fn XSetGraphicsExposures(arg0: *mut Display, arg1: GC, arg2: c_int) -> c_int;
 
-    pub fn XSetIconName(arg0: *Display, arg1: Window, arg2: *c_char) -> c_int;
+    pub fn XSetIconName(arg0: *mut Display, arg1: Window, arg2: *mut c_char) -> c_int;
 
-    pub fn XSetInputFocus(arg0: *Display, arg1: Window, arg2: c_int, arg3: Time) -> c_int;
+    pub fn XSetInputFocus(arg0: *mut Display, arg1: Window, arg2: c_int, arg3: Time) -> c_int;
 
-    pub fn XSetLineAttributes(arg0: *Display, arg1: GC, arg2: c_uint, arg3: c_int, arg4: c_int, arg5: c_int) -> c_int;
+    pub fn XSetLineAttributes(arg0: *mut Display, arg1: GC, arg2: c_uint, arg3: c_int, arg4: c_int, arg5: c_int) -> c_int;
 
-    pub fn XSetModifierMapping(arg0: *Display, arg1: *XModifierKeymap) -> c_int;
+    pub fn XSetModifierMapping(arg0: *mut Display, arg1: *mut XModifierKeymap) -> c_int;
 
-    pub fn XSetPlaneMask(arg0: *Display, arg1: GC, arg2: c_ulong) -> c_int;
+    pub fn XSetPlaneMask(arg0: *mut Display, arg1: GC, arg2: c_ulong) -> c_int;
 
-    pub fn XSetPointerMapping(arg0: *Display, arg1: *c_uchar, arg2: c_int) -> c_int;
+    pub fn XSetPointerMapping(arg0: *mut Display, arg1: *mut c_uchar, arg2: c_int) -> c_int;
 
-    pub fn XSetScreenSaver(arg0: *Display, arg1: c_int, arg2: c_int, arg3: c_int, arg4: c_int) -> c_int;
+    pub fn XSetScreenSaver(arg0: *mut Display, arg1: c_int, arg2: c_int, arg3: c_int, arg4: c_int) -> c_int;
 
-    pub fn XSetSelectionOwner(arg0: *Display, arg1: Atom, arg2: Window, arg3: Time) -> c_int;
+    pub fn XSetSelectionOwner(arg0: *mut Display, arg1: Atom, arg2: Window, arg3: Time) -> c_int;
 
-    pub fn XSetState(arg0: *Display, arg1: GC, arg2: c_ulong, arg3: c_ulong, arg4: c_int, arg5: c_ulong) -> c_int;
+    pub fn XSetState(arg0: *mut Display, arg1: GC, arg2: c_ulong, arg3: c_ulong, arg4: c_int, arg5: c_ulong) -> c_int;
 
-    pub fn XSetStipple(arg0: *Display, arg1: GC, arg2: Pixmap) -> c_int;
+    pub fn XSetStipple(arg0: *mut Display, arg1: GC, arg2: Pixmap) -> c_int;
 
-    pub fn XSetSubwindowMode(arg0: *Display, arg1: GC, arg2: c_int) -> c_int;
+    pub fn XSetSubwindowMode(arg0: *mut Display, arg1: GC, arg2: c_int) -> c_int;
 
-    pub fn XSetTSOrigin(arg0: *Display, arg1: GC, arg2: c_int, arg3: c_int) -> c_int;
+    pub fn XSetTSOrigin(arg0: *mut Display, arg1: GC, arg2: c_int, arg3: c_int) -> c_int;
 
-    pub fn XSetTile(arg0: *Display, arg1: GC, arg2: Pixmap) -> c_int;
+    pub fn XSetTile(arg0: *mut Display, arg1: GC, arg2: Pixmap) -> c_int;
 
-    pub fn XSetWindowBackground(arg0: *Display, arg1: Window, arg2: c_ulong) -> c_int;
+    pub fn XSetWindowBackground(arg0: *mut Display, arg1: Window, arg2: c_ulong) -> c_int;
 
-    pub fn XSetWindowBackgroundPixmap(arg0: *Display, arg1: Window, arg2: Pixmap) -> c_int;
+    pub fn XSetWindowBackgroundPixmap(arg0: *mut Display, arg1: Window, arg2: Pixmap) -> c_int;
 
-    pub fn XSetWindowBorder(arg0: *Display, arg1: Window, arg2: c_ulong) -> c_int;
+    pub fn XSetWindowBorder(arg0: *mut Display, arg1: Window, arg2: c_ulong) -> c_int;
 
-    pub fn XSetWindowBorderPixmap(arg0: *Display, arg1: Window, arg2: Pixmap) -> c_int;
+    pub fn XSetWindowBorderPixmap(arg0: *mut Display, arg1: Window, arg2: Pixmap) -> c_int;
 
-    pub fn XSetWindowBorderWidth(arg0: *Display, arg1: Window, arg2: c_uint) -> c_int;
+    pub fn XSetWindowBorderWidth(arg0: *mut Display, arg1: Window, arg2: c_uint) -> c_int;
 
-    pub fn XSetWindowColormap(arg0: *Display, arg1: Window, arg2: Colormap) -> c_int;
+    pub fn XSetWindowColormap(arg0: *mut Display, arg1: Window, arg2: Colormap) -> c_int;
 
-    pub fn XStoreBuffer(arg0: *Display, arg1: *c_char, arg2: c_int, arg3: c_int) -> c_int;
+    pub fn XStoreBuffer(arg0: *mut Display, arg1: *mut c_char, arg2: c_int, arg3: c_int) -> c_int;
 
-    pub fn XStoreBytes(arg0: *Display, arg1: *c_char, arg2: c_int) -> c_int;
+    pub fn XStoreBytes(arg0: *mut Display, arg1: *mut c_char, arg2: c_int) -> c_int;
 
-    pub fn XStoreColor(arg0: *Display, arg1: Colormap, arg2: *XColor) -> c_int;
+    pub fn XStoreColor(arg0: *mut Display, arg1: Colormap, arg2: *mut XColor) -> c_int;
 
-    pub fn XStoreColors(arg0: *Display, arg1: Colormap, arg2: *XColor, arg3: c_int) -> c_int;
+    pub fn XStoreColors(arg0: *mut Display, arg1: Colormap, arg2: *mut XColor, arg3: c_int) -> c_int;
 
-    pub fn XStoreName(arg0: *Display, arg1: Window, arg2: *c_char) -> c_int;
+    pub fn XStoreName(arg0: *mut Display, arg1: Window, arg2: *mut c_char) -> c_int;
 
-    pub fn XStoreNamedColor(arg0: *Display, arg1: Colormap, arg2: *c_char, arg3: c_ulong, arg4: c_int) -> c_int;
+    pub fn XStoreNamedColor(arg0: *mut Display, arg1: Colormap, arg2: *mut c_char, arg3: c_ulong, arg4: c_int) -> c_int;
 
-    pub fn XSync(arg0: *Display, arg1: c_int) -> c_int;
+    pub fn XSync(arg0: *mut Display, arg1: c_int) -> c_int;
 
-    pub fn XTextExtents(arg0: *XFontStruct, arg1: *c_char, arg2: c_int, arg3: *c_int, arg4: *c_int, arg5: *c_int, arg6: *XCharStruct) -> c_int;
+    pub fn XTextExtents(arg0: *mut XFontStruct, arg1: *mut c_char, arg2: c_int, arg3: *mut c_int, arg4: *mut c_int, arg5: *mut c_int, arg6: *mut XCharStruct) -> c_int;
 
-    pub fn XTextExtents16(arg0: *XFontStruct, arg1: *XChar2b, arg2: c_int, arg3: *c_int, arg4: *c_int, arg5: *c_int, arg6: *XCharStruct) -> c_int;
+    pub fn XTextExtents16(arg0: *mut XFontStruct, arg1: *mut XChar2b, arg2: c_int, arg3: *mut c_int, arg4: *mut c_int, arg5: *mut c_int, arg6: *mut XCharStruct) -> c_int;
 
-    pub fn XTextWidth(arg0: *XFontStruct, arg1: *c_char, arg2: c_int) -> c_int;
+    pub fn XTextWidth(arg0: *mut XFontStruct, arg1: *mut c_char, arg2: c_int) -> c_int;
 
-    pub fn XTextWidth16(arg0: *XFontStruct, arg1: *XChar2b, arg2: c_int) -> c_int;
+    pub fn XTextWidth16(arg0: *mut XFontStruct, arg1: *mut XChar2b, arg2: c_int) -> c_int;
 
-    pub fn XTranslateCoordinates(arg0: *Display, arg1: Window, arg2: Window, arg3: c_int, arg4: c_int, arg5: *c_int, arg6: *c_int, arg7: *Window) -> c_int;
+    pub fn XTranslateCoordinates(arg0: *mut Display, arg1: Window, arg2: Window, arg3: c_int, arg4: c_int, arg5: *mut c_int, arg6: *mut c_int, arg7: *mut Window) -> c_int;
 
-    pub fn XUndefineCursor(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XUndefineCursor(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XUngrabButton(arg0: *Display, arg1: c_uint, arg2: c_uint, arg3: Window) -> c_int;
+    pub fn XUngrabButton(arg0: *mut Display, arg1: c_uint, arg2: c_uint, arg3: Window) -> c_int;
 
-    pub fn XUngrabKey(arg0: *Display, arg1: c_int, arg2: c_uint, arg3: Window) -> c_int;
+    pub fn XUngrabKey(arg0: *mut Display, arg1: c_int, arg2: c_uint, arg3: Window) -> c_int;
 
-    pub fn XUngrabKeyboard(arg0: *Display, arg1: Time) -> c_int;
+    pub fn XUngrabKeyboard(arg0: *mut Display, arg1: Time) -> c_int;
 
-    pub fn XUngrabPointer(arg0: *Display, arg1: Time) -> c_int;
+    pub fn XUngrabPointer(arg0: *mut Display, arg1: Time) -> c_int;
 
-    pub fn XUngrabServer(arg0: *Display) -> c_int;
+    pub fn XUngrabServer(arg0: *mut Display) -> c_int;
 
-    pub fn XUninstallColormap(arg0: *Display, arg1: Colormap) -> c_int;
+    pub fn XUninstallColormap(arg0: *mut Display, arg1: Colormap) -> c_int;
 
-    pub fn XUnloadFont(arg0: *Display, arg1: Font) -> c_int;
+    pub fn XUnloadFont(arg0: *mut Display, arg1: Font) -> c_int;
 
-    pub fn XUnmapSubwindows(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XUnmapSubwindows(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XUnmapWindow(arg0: *Display, arg1: Window) -> c_int;
+    pub fn XUnmapWindow(arg0: *mut Display, arg1: Window) -> c_int;
 
-    pub fn XVendorRelease(arg0: *Display) -> c_int;
+    pub fn XVendorRelease(arg0: *mut Display) -> c_int;
 
-    pub fn XWarpPointer(arg0: *Display, arg1: Window, arg2: Window, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int) -> c_int;
+    pub fn XWarpPointer(arg0: *mut Display, arg1: Window, arg2: Window, arg3: c_int, arg4: c_int, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int) -> c_int;
 
-    pub fn XWidthMMOfScreen(arg0: *Screen) -> c_int;
+    pub fn XWidthMMOfScreen(arg0: *mut Screen) -> c_int;
 
-    pub fn XWidthOfScreen(arg0: *Screen) -> c_int;
+    pub fn XWidthOfScreen(arg0: *mut Screen) -> c_int;
 
-    pub fn XWindowEvent(arg0: *Display, arg1: Window, arg2: c_long, arg3: *XEvent) -> c_int;
+    pub fn XWindowEvent(arg0: *mut Display, arg1: Window, arg2: c_long, arg3: *mut XEvent) -> c_int;
 
-    pub fn XWriteBitmapFile(arg0: *Display, arg1: *c_char, arg2: Pixmap, arg3: c_uint, arg4: c_uint, arg5: c_int, arg6: c_int) -> c_int;
+    pub fn XWriteBitmapFile(arg0: *mut Display, arg1: *mut c_char, arg2: Pixmap, arg3: c_uint, arg4: c_uint, arg5: c_int, arg6: c_int) -> c_int;
 
     pub fn XSupportsLocale() -> c_int;
 
-    pub fn XSetLocaleModifiers(arg0: *c_char) -> *c_char;
+    pub fn XSetLocaleModifiers(arg0: *mut c_char) -> *mut c_char;
 
-    pub fn XOpenOM(arg0: *Display, arg1: *struct__XrmHashBucketRec, arg2: *c_char, arg3: *c_char) -> XOM;
+    pub fn XOpenOM(arg0: *mut Display, arg1: *mut struct__XrmHashBucketRec, arg2: *mut c_char, arg3: *mut c_char) -> XOM;
 
     pub fn XCloseOM(arg0: XOM) -> c_int;
 
-    pub fn XSetOMValues(arg0: XOM/* FIXME: variadic function */) -> *c_char;
+    pub fn XSetOMValues(arg0: XOM/* FIXME: variadic function */) -> *mut c_char;
 
-    pub fn XGetOMValues(arg0: XOM/* FIXME: variadic function */) -> *c_char;
+    pub fn XGetOMValues(arg0: XOM/* FIXME: variadic function */) -> *mut c_char;
 
-    pub fn XDisplayOfOM(arg0: XOM) -> *Display;
+    pub fn XDisplayOfOM(arg0: XOM) -> *mut Display;
 
-    pub fn XLocaleOfOM(arg0: XOM) -> *c_char;
+    pub fn XLocaleOfOM(arg0: XOM) -> *mut c_char;
 
     pub fn XCreateOC(arg0: XOM/* FIXME: variadic function */) -> XOC;
 
@@ -1783,19 +1783,19 @@ extern {
 
     pub fn XOMOfOC(arg0: XOC) -> XOM;
 
-    pub fn XSetOCValues(arg0: XOC/* FIXME: variadic function */) -> *c_char;
+    pub fn XSetOCValues(arg0: XOC/* FIXME: variadic function */) -> *mut c_char;
 
-    pub fn XGetOCValues(arg0: XOC/* FIXME: variadic function */) -> *c_char;
+    pub fn XGetOCValues(arg0: XOC/* FIXME: variadic function */) -> *mut c_char;
 
-    pub fn XCreateFontSet(arg0: *Display, arg1: *c_char, arg2: ***c_char, arg3: *c_int, arg4: **c_char) -> XFontSet;
+    pub fn XCreateFontSet(arg0: *mut Display, arg1: *mut c_char, arg2: *mut *mut *mut c_char, arg3: *mut c_int, arg4: *mut *mut c_char) -> XFontSet;
 
-    pub fn XFreeFontSet(arg0: *Display, arg1: XFontSet);
+    pub fn XFreeFontSet(arg0: *mut Display, arg1: XFontSet);
 
-    pub fn XFontsOfFontSet(arg0: XFontSet, arg1: ***XFontStruct, arg2: ***c_char) -> c_int;
+    pub fn XFontsOfFontSet(arg0: XFontSet, arg1: *mut *mut *mut XFontStruct, arg2: *mut *mut *mut c_char) -> c_int;
 
-    pub fn XBaseFontNameListOfFontSet(arg0: XFontSet) -> *c_char;
+    pub fn XBaseFontNameListOfFontSet(arg0: XFontSet) -> *mut c_char;
 
-    pub fn XLocaleOfFontSet(arg0: XFontSet) -> *c_char;
+    pub fn XLocaleOfFontSet(arg0: XFontSet) -> *mut c_char;
 
     pub fn XContextDependentDrawing(arg0: XFontSet) -> c_int;
 
@@ -1803,55 +1803,55 @@ extern {
 
     pub fn XContextualDrawing(arg0: XFontSet) -> c_int;
 
-    pub fn XExtentsOfFontSet(arg0: XFontSet) -> *XFontSetExtents;
+    pub fn XExtentsOfFontSet(arg0: XFontSet) -> *mut XFontSetExtents;
 
-    pub fn XmbTextEscapement(arg0: XFontSet, arg1: *c_char, arg2: c_int) -> c_int;
+    pub fn XmbTextEscapement(arg0: XFontSet, arg1: *mut c_char, arg2: c_int) -> c_int;
 
-    pub fn XwcTextEscapement(arg0: XFontSet, arg1: *wchar_t, arg2: c_int) -> c_int;
+    pub fn XwcTextEscapement(arg0: XFontSet, arg1: *mut wchar_t, arg2: c_int) -> c_int;
 
-    pub fn Xutf8TextEscapement(arg0: XFontSet, arg1: *c_char, arg2: c_int) -> c_int;
+    pub fn Xutf8TextEscapement(arg0: XFontSet, arg1: *mut c_char, arg2: c_int) -> c_int;
 
-    pub fn XmbTextExtents(arg0: XFontSet, arg1: *c_char, arg2: c_int, arg3: *XRectangle, arg4: *XRectangle) -> c_int;
+    pub fn XmbTextExtents(arg0: XFontSet, arg1: *mut c_char, arg2: c_int, arg3: *mut XRectangle, arg4: *mut XRectangle) -> c_int;
 
-    pub fn XwcTextExtents(arg0: XFontSet, arg1: *wchar_t, arg2: c_int, arg3: *XRectangle, arg4: *XRectangle) -> c_int;
+    pub fn XwcTextExtents(arg0: XFontSet, arg1: *mut wchar_t, arg2: c_int, arg3: *mut XRectangle, arg4: *mut XRectangle) -> c_int;
 
-    pub fn Xutf8TextExtents(arg0: XFontSet, arg1: *c_char, arg2: c_int, arg3: *XRectangle, arg4: *XRectangle) -> c_int;
+    pub fn Xutf8TextExtents(arg0: XFontSet, arg1: *mut c_char, arg2: c_int, arg3: *mut XRectangle, arg4: *mut XRectangle) -> c_int;
 
-    pub fn XmbTextPerCharExtents(arg0: XFontSet, arg1: *c_char, arg2: c_int, arg3: *XRectangle, arg4: *XRectangle, arg5: c_int, arg6: *c_int, arg7: *XRectangle, arg8: *XRectangle) -> c_int;
+    pub fn XmbTextPerCharExtents(arg0: XFontSet, arg1: *mut c_char, arg2: c_int, arg3: *mut XRectangle, arg4: *mut XRectangle, arg5: c_int, arg6: *mut c_int, arg7: *mut XRectangle, arg8: *mut XRectangle) -> c_int;
 
-    pub fn XwcTextPerCharExtents(arg0: XFontSet, arg1: *wchar_t, arg2: c_int, arg3: *XRectangle, arg4: *XRectangle, arg5: c_int, arg6: *c_int, arg7: *XRectangle, arg8: *XRectangle) -> c_int;
+    pub fn XwcTextPerCharExtents(arg0: XFontSet, arg1: *mut wchar_t, arg2: c_int, arg3: *mut XRectangle, arg4: *mut XRectangle, arg5: c_int, arg6: *mut c_int, arg7: *mut XRectangle, arg8: *mut XRectangle) -> c_int;
 
-    pub fn Xutf8TextPerCharExtents(arg0: XFontSet, arg1: *c_char, arg2: c_int, arg3: *XRectangle, arg4: *XRectangle, arg5: c_int, arg6: *c_int, arg7: *XRectangle, arg8: *XRectangle) -> c_int;
+    pub fn Xutf8TextPerCharExtents(arg0: XFontSet, arg1: *mut c_char, arg2: c_int, arg3: *mut XRectangle, arg4: *mut XRectangle, arg5: c_int, arg6: *mut c_int, arg7: *mut XRectangle, arg8: *mut XRectangle) -> c_int;
 
-    pub fn XmbDrawText(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *XmbTextItem, arg6: c_int);
+    pub fn XmbDrawText(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut XmbTextItem, arg6: c_int);
 
-    pub fn XwcDrawText(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *XwcTextItem, arg6: c_int);
+    pub fn XwcDrawText(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut XwcTextItem, arg6: c_int);
 
-    pub fn Xutf8DrawText(arg0: *Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *XmbTextItem, arg6: c_int);
+    pub fn Xutf8DrawText(arg0: *mut Display, arg1: Drawable, arg2: GC, arg3: c_int, arg4: c_int, arg5: *mut XmbTextItem, arg6: c_int);
 
-    pub fn XmbDrawString(arg0: *Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *c_char, arg7: c_int);
+    pub fn XmbDrawString(arg0: *mut Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *mut c_char, arg7: c_int);
 
-    pub fn XwcDrawString(arg0: *Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *wchar_t, arg7: c_int);
+    pub fn XwcDrawString(arg0: *mut Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *mut wchar_t, arg7: c_int);
 
-    pub fn Xutf8DrawString(arg0: *Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *c_char, arg7: c_int);
+    pub fn Xutf8DrawString(arg0: *mut Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *mut c_char, arg7: c_int);
 
-    pub fn XmbDrawImageString(arg0: *Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *c_char, arg7: c_int);
+    pub fn XmbDrawImageString(arg0: *mut Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *mut c_char, arg7: c_int);
 
-    pub fn XwcDrawImageString(arg0: *Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *wchar_t, arg7: c_int);
+    pub fn XwcDrawImageString(arg0: *mut Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *mut wchar_t, arg7: c_int);
 
-    pub fn Xutf8DrawImageString(arg0: *Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *c_char, arg7: c_int);
+    pub fn Xutf8DrawImageString(arg0: *mut Display, arg1: Drawable, arg2: XFontSet, arg3: GC, arg4: c_int, arg5: c_int, arg6: *mut c_char, arg7: c_int);
 
-    pub fn XOpenIM(arg0: *Display, arg1: *struct__XrmHashBucketRec, arg2: *c_char, arg3: *c_char) -> XIM;
+    pub fn XOpenIM(arg0: *mut Display, arg1: *mut struct__XrmHashBucketRec, arg2: *mut c_char, arg3: *mut c_char) -> XIM;
 
     pub fn XCloseIM(arg0: XIM) -> c_int;
 
-    pub fn XGetIMValues(arg0: XIM/* FIXME: variadic function */) -> *c_char;
+    pub fn XGetIMValues(arg0: XIM/* FIXME: variadic function */) -> *mut c_char;
 
-    pub fn XSetIMValues(arg0: XIM/* FIXME: variadic function */) -> *c_char;
+    pub fn XSetIMValues(arg0: XIM/* FIXME: variadic function */) -> *mut c_char;
 
-    pub fn XDisplayOfIM(arg0: XIM) -> *Display;
+    pub fn XDisplayOfIM(arg0: XIM) -> *mut Display;
 
-    pub fn XLocaleOfIM(arg0: XIM) -> *c_char;
+    pub fn XLocaleOfIM(arg0: XIM) -> *mut c_char;
 
     pub fn XCreateIC(arg0: XIM/* FIXME: variadic function */) -> XIC;
 
@@ -1861,48 +1861,48 @@ extern {
 
     pub fn XUnsetICFocus(arg0: XIC);
 
-    pub fn XwcResetIC(arg0: XIC) -> *wchar_t;
+    pub fn XwcResetIC(arg0: XIC) -> *mut wchar_t;
 
-    pub fn XmbResetIC(arg0: XIC) -> *c_char;
+    pub fn XmbResetIC(arg0: XIC) -> *mut c_char;
 
-    pub fn Xutf8ResetIC(arg0: XIC) -> *c_char;
+    pub fn Xutf8ResetIC(arg0: XIC) -> *mut c_char;
 
-    pub fn XSetICValues(arg0: XIC/* FIXME: variadic function */) -> *c_char;
+    pub fn XSetICValues(arg0: XIC/* FIXME: variadic function */) -> *mut c_char;
 
-    pub fn XGetICValues(arg0: XIC/* FIXME: variadic function */) -> *c_char;
+    pub fn XGetICValues(arg0: XIC/* FIXME: variadic function */) -> *mut c_char;
 
     pub fn XIMOfIC(arg0: XIC) -> XIM;
 
-    pub fn XFilterEvent(arg0: *XEvent, arg1: Window) -> c_int;
+    pub fn XFilterEvent(arg0: *mut XEvent, arg1: Window) -> c_int;
 
-    pub fn XmbLookupString(arg0: XIC, arg1: *XKeyPressedEvent, arg2: *c_char, arg3: c_int, arg4: *KeySym, arg5: *c_int) -> c_int;
+    pub fn XmbLookupString(arg0: XIC, arg1: *mut XKeyPressedEvent, arg2: *mut c_char, arg3: c_int, arg4: *mut KeySym, arg5: *mut c_int) -> c_int;
 
-    pub fn XwcLookupString(arg0: XIC, arg1: *XKeyPressedEvent, arg2: *wchar_t, arg3: c_int, arg4: *KeySym, arg5: *c_int) -> c_int;
+    pub fn XwcLookupString(arg0: XIC, arg1: *mut XKeyPressedEvent, arg2: *mut wchar_t, arg3: c_int, arg4: *mut KeySym, arg5: *mut c_int) -> c_int;
 
-    pub fn Xutf8LookupString(arg0: XIC, arg1: *XKeyPressedEvent, arg2: *c_char, arg3: c_int, arg4: *KeySym, arg5: *c_int) -> c_int;
+    pub fn Xutf8LookupString(arg0: XIC, arg1: *mut XKeyPressedEvent, arg2: *mut c_char, arg3: c_int, arg4: *mut KeySym, arg5: *mut c_int) -> c_int;
 
     pub fn XVaCreateNestedList(arg0: c_int/* FIXME: variadic function */) -> XVaNestedList;
 
-    pub fn XRegisterIMInstantiateCallback(arg0: *Display, arg1: *struct__XrmHashBucketRec, arg2: *c_char, arg3: *c_char, arg4: XIDProc, arg5: XPointer) -> c_int;
+    pub fn XRegisterIMInstantiateCallback(arg0: *mut Display, arg1: *mut struct__XrmHashBucketRec, arg2: *mut c_char, arg3: *mut c_char, arg4: XIDProc, arg5: XPointer) -> c_int;
 
-    pub fn XUnregisterIMInstantiateCallback(arg0: *Display, arg1: *struct__XrmHashBucketRec, arg2: *c_char, arg3: *c_char, arg4: XIDProc, arg5: XPointer) -> c_int;
+    pub fn XUnregisterIMInstantiateCallback(arg0: *mut Display, arg1: *mut struct__XrmHashBucketRec, arg2: *mut c_char, arg3: *mut c_char, arg4: XIDProc, arg5: XPointer) -> c_int;
 
-    pub fn XInternalConnectionNumbers(arg0: *Display, arg1: **c_int, arg2: *c_int) -> c_int;
+    pub fn XInternalConnectionNumbers(arg0: *mut Display, arg1: *mut *mut c_int, arg2: *mut c_int) -> c_int;
 
-    pub fn XProcessInternalConnection(arg0: *Display, arg1: c_int);
+    pub fn XProcessInternalConnection(arg0: *mut Display, arg1: c_int);
 
-    pub fn XAddConnectionWatch(arg0: *Display, arg1: XConnectionWatchProc, arg2: XPointer) -> c_int;
+    pub fn XAddConnectionWatch(arg0: *mut Display, arg1: XConnectionWatchProc, arg2: XPointer) -> c_int;
 
-    pub fn XRemoveConnectionWatch(arg0: *Display, arg1: XConnectionWatchProc, arg2: XPointer);
+    pub fn XRemoveConnectionWatch(arg0: *mut Display, arg1: XConnectionWatchProc, arg2: XPointer);
 
-    pub fn XSetAuthorization(arg0: *c_char, arg1: c_int, arg2: *c_char, arg3: c_int);
+    pub fn XSetAuthorization(arg0: *mut c_char, arg1: c_int, arg2: *mut c_char, arg3: c_int);
 
-    pub fn _Xmbtowc(arg0: *wchar_t, arg1: *c_char, arg2: c_int) -> c_int;
+    pub fn _Xmbtowc(arg0: *mut wchar_t, arg1: *mut c_char, arg2: c_int) -> c_int;
 
-    pub fn _Xwctomb(arg0: *c_char, arg1: wchar_t) -> c_int;
+    pub fn _Xwctomb(arg0: *mut c_char, arg1: wchar_t) -> c_int;
 
-    pub fn XGetEventData(arg0: *Display, arg1: *XGenericEventCookie) -> c_int;
+    pub fn XGetEventData(arg0: *mut Display, arg1: *mut XGenericEventCookie) -> c_int;
 
-    pub fn XFreeEventData(arg0: *Display, arg1: *XGenericEventCookie);
+    pub fn XFreeEventData(arg0: *mut Display, arg1: *mut XGenericEventCookie);
 
 }

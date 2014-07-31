@@ -7,7 +7,7 @@
 // option. This file may not be copied, modified, or distributed
 // except according to those terms.
 
-#![crate_id = "github.com/mozilla-servo/rust-xlib#xlib:0.1"]
+#![crate_name = "xlib"]
 #![crate_type = "lib"]
 #![crate_type = "dylib"]
 #![crate_type = "rlib"]
