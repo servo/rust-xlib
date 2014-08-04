@@ -2,6 +2,9 @@ VPATH=%VPATH%
 
 RUSTC ?= rustc
 RUSTFLAGS ?=
+RUSTDOC ?= rustdoc
+RUSTDOC_FLAGS ?=
+RUSTDOC_TARGET ?= doc
 
 RUST_SRC=$(shell find $(VPATH)/. -type f -name '*.rs')
 
@@ -18,6 +21,12 @@ xlib-test: lib.rs $(RUST_SRC)
 .PHONY: check
 check: xlib-test
 	./xlib-test $(TEST)
+
+.PHONY: doc
+doc: $(RUSTDOC_TARGET)/xlib/index.html
+
+$(RUSTDOC_TARGET)/xlib/index.html: lib.rs $(RUST_SRC)
+	$(RUSTDOC) $(RUSTDOC_FLAGS) $< -o $(RUSTDOC_TARGET)
 
 .PHONY: clean
 clean:
