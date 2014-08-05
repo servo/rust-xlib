@@ -1,0 +1,10 @@
+[package]
+
+name = "xlib"
+version = "0.1.0"
+authors = ["The Servo Project Developers"]
+
+[[lib]]
+
+name = "xlib"
+crate-type = ["rlib"]

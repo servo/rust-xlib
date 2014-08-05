@@ -6,16 +6,16 @@ RUSTDOC ?= rustdoc
 RUSTDOC_FLAGS ?=
 RUSTDOC_TARGET ?= doc
 
-RUST_SRC=$(shell find $(VPATH)/. -type f -name '*.rs')
+RUST_SRC=$(shell find $(VPATH)/src -type f -name '*.rs')
 
 .PHONY: all
 all:    libxlib.dummy
 
-libxlib.dummy: lib.rs $(RUST_SRC)
+libxlib.dummy: src/lib.rs $(RUST_SRC)
 	$(RUSTC) $(RUSTFLAGS) $< --crate-type=lib --out-dir .
 	touch $@
 
-xlib-test: lib.rs $(RUST_SRC)
+xlib-test: src/lib.rs $(RUST_SRC)
 	$(RUSTC) $(RUSTFLAGS) $< -o $@ --test
 
 .PHONY: check
@@ -25,7 +25,7 @@ check: xlib-test
 .PHONY: doc
 doc: $(RUSTDOC_TARGET)/xlib/index.html
 
-$(RUSTDOC_TARGET)/xlib/index.html: lib.rs $(RUST_SRC)
+$(RUSTDOC_TARGET)/xlib/index.html: src/lib.rs $(RUST_SRC)
 	$(RUSTDOC) $(RUSTDOC_FLAGS) $< -o $(RUSTDOC_TARGET)
 
 .PHONY: clean
