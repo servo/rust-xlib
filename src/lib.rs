@@ -16,4 +16,5 @@
 
 extern crate libc;
 
-pub mod xlib;
+pub use xlib::*;
+mod xlib;
