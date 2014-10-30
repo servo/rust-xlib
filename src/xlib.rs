@@ -42,6 +42,7 @@ pub type KeyCode = c_uchar;
 
 pub type XPointer = *mut c_char;
 
+#[repr(C)]
 pub struct struct__XExtData {
     pub number: c_int,
     pub next: *mut c_void /* struct__XExtData */,
@@ -51,6 +52,7 @@ pub struct struct__XExtData {
 
 pub type XExtData = struct__XExtData;
 
+#[repr(C)]
 pub struct XExtCodes {
     pub extension: c_int,
     pub major_opcode: c_int,
@@ -58,12 +60,14 @@ pub struct XExtCodes {
     pub first_error: c_int,
 }
 
+#[repr(C)]
 pub struct XPixmapFormatValues {
     pub depth: c_int,
     pub bits_per_pixel: c_int,
     pub scanline_pad: c_int,
 }
 
+#[repr(C)]
 pub struct XGCValues {
     pub function: c_int,
     pub plane_mask: c_ulong,
@@ -94,6 +98,7 @@ pub type struct__XGC = c_void;
 
 pub type GC = *mut struct__XGC;
 
+#[repr(C)]
 pub struct Visual {
     pub ext_data: *mut XExtData,
     pub visualid: VisualID,
@@ -105,6 +110,7 @@ pub struct Visual {
     pub map_entries: c_int,
 }
 
+#[repr(C)]
 pub struct Depth {
     pub depth: c_int,
     pub nvisuals: c_int,
@@ -113,6 +119,7 @@ pub struct Depth {
 
 pub type struct__XDisplay = c_void;
 
+#[repr(C)]
 pub struct Screen {
     pub ext_data: *mut XExtData,
     pub display: *mut c_void /* struct__XDisplay */,
@@ -136,6 +143,7 @@ pub struct Screen {
     pub root_input_mask: c_long,
 }
 
+#[repr(C)]
 pub struct ScreenFormat {
     pub ext_data: *mut XExtData,
     pub depth: c_int,
@@ -143,6 +151,7 @@ pub struct ScreenFormat {
     pub scanline_pad: c_int,
 }
 
+#[repr(C)]
 pub struct XSetWindowAttributes {
     pub background_pixmap: Pixmap,
     pub background_pixel: c_ulong,
@@ -161,6 +170,7 @@ pub struct XSetWindowAttributes {
     pub cursor: Cursor,
 }
 
+#[repr(C)]
 pub struct XWindowAttributes {
     pub x: c_int,
     pub y: c_int,
@@ -187,12 +197,14 @@ pub struct XWindowAttributes {
     pub screen: *mut Screen,
 }
 
+#[repr(C)]
 pub struct XHostAddress {
     pub family: c_int,
     pub length: c_int,
     pub address: *mut c_char,
 }
 
+#[repr(C)]
 pub struct XServerInterpretedAddress {
     pub typelength: c_int,
     pub valuelength: c_int,
@@ -200,6 +212,7 @@ pub struct XServerInterpretedAddress {
     pub value: *mut c_char,
 }
 
+#[repr(C)]
 pub struct struct__XImage {
     pub width: c_int,
     pub height: c_int,
@@ -220,6 +233,7 @@ pub struct struct__XImage {
     pub f: struct_funcs,
 }
 
+#[repr(C)]
 pub struct struct_funcs {
     pub create_image: *mut u8,
     pub destroy_image: *mut u8,
@@ -231,6 +245,7 @@ pub struct struct_funcs {
 
 pub type XImage = struct__XImage;
 
+#[repr(C)]
 pub struct XWindowChanges {
     pub x: c_int,
     pub y: c_int,
@@ -241,6 +256,7 @@ pub struct XWindowChanges {
     pub stack_mode: c_int,
 }
 
+#[repr(C)]
 pub struct XColor {
     pub pixel: c_ulong,
     pub red: c_ushort,
@@ -250,6 +266,7 @@ pub struct XColor {
     pub pad: c_char,
 }
 
+#[repr(C)]
 pub struct XSegment {
     pub x1: c_short,
     pub y1: c_short,
@@ -257,11 +274,13 @@ pub struct XSegment {
     pub y2: c_short,
 }
 
+#[repr(C)]
 pub struct XPoint {
     pub x: c_short,
     pub y: c_short,
 }
 
+#[repr(C)]
 pub struct XRectangle {
     pub x: c_short,
     pub y: c_short,
@@ -269,6 +288,7 @@ pub struct XRectangle {
     pub height: c_ushort,
 }
 
+#[repr(C)]
 pub struct XArc {
     pub x: c_short,
     pub y: c_short,
@@ -278,6 +298,7 @@ pub struct XArc {
     pub angle2: c_short,
 }
 
+#[repr(C)]
 pub struct XKeyboardControl {
     pub key_click_percent: c_int,
     pub bell_percent: c_int,
@@ -289,6 +310,7 @@ pub struct XKeyboardControl {
     pub auto_repeat_mode: c_int,
 }
 
+#[repr(C)]
 pub struct XKeyboardState {
     pub key_click_percent: c_int,
     pub bell_percent: c_int,
@@ -299,12 +321,14 @@ pub struct XKeyboardState {
     pub auto_repeats: (c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char),
 }
 
+#[repr(C)]
 pub struct XTimeCoord {
     pub time: Time,
     pub x: c_short,
     pub y: c_short,
 }
 
+#[repr(C)]
 pub struct XModifierKeymap {
     pub max_keypermod: c_int,
     pub modifiermap: *mut KeyCode,
@@ -318,6 +342,7 @@ pub type struct__XrmHashBucketRec = c_void;
 
 pub type _XPrivDisplay = *mut struct_unnamed1;
 
+#[repr(C)]
 pub struct XKeyEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -340,6 +365,7 @@ pub type XKeyPressedEvent = XKeyEvent;
 
 pub type XKeyReleasedEvent = XKeyEvent;
 
+#[repr(C)]
 pub struct XButtonEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -362,6 +388,7 @@ pub type XButtonPressedEvent = XButtonEvent;
 
 pub type XButtonReleasedEvent = XButtonEvent;
 
+#[repr(C)]
 pub struct XMotionEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -382,6 +409,7 @@ pub struct XMotionEvent {
 
 pub type XPointerMovedEvent = XMotionEvent;
 
+#[repr(C)]
 pub struct XCrossingEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -406,6 +434,7 @@ pub type XEnterWindowEvent = XCrossingEvent;
 
 pub type XLeaveWindowEvent = XCrossingEvent;
 
+#[repr(C)]
 pub struct XFocusChangeEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -420,6 +449,7 @@ pub type XFocusInEvent = XFocusChangeEvent;
 
 pub type XFocusOutEvent = XFocusChangeEvent;
 
+#[repr(C)]
 pub struct XKeymapEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -429,6 +459,7 @@ pub struct XKeymapEvent {
     pub key_vector: (c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char,c_char),
 }
 
+#[repr(C)]
 pub struct XExposeEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -442,6 +473,7 @@ pub struct XExposeEvent {
     pub count: c_int,
 }
 
+#[repr(C)]
 pub struct XGraphicsExposeEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -457,6 +489,7 @@ pub struct XGraphicsExposeEvent {
     pub minor_code: c_int,
 }
 
+#[repr(C)]
 pub struct XNoExposeEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -467,6 +500,7 @@ pub struct XNoExposeEvent {
     pub minor_code: c_int,
 }
 
+#[repr(C)]
 pub struct XVisibilityEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -476,6 +510,7 @@ pub struct XVisibilityEvent {
     pub state: c_int,
 }
 
+#[repr(C)]
 pub struct XCreateWindowEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -491,6 +526,7 @@ pub struct XCreateWindowEvent {
     pub override_redirect: c_int,
 }
 
+#[repr(C)]
 pub struct XDestroyWindowEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -500,6 +536,7 @@ pub struct XDestroyWindowEvent {
     pub window: Window,
 }
 
+#[repr(C)]
 pub struct XUnmapEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -510,6 +547,7 @@ pub struct XUnmapEvent {
     pub from_configure: c_int,
 }
 
+#[repr(C)]
 pub struct XMapEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -520,6 +558,7 @@ pub struct XMapEvent {
     pub override_redirect: c_int,
 }
 
+#[repr(C)]
 pub struct XMapRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -529,6 +568,7 @@ pub struct XMapRequestEvent {
     pub window: Window,
 }
 
+#[repr(C)]
 pub struct XReparentEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -542,6 +582,7 @@ pub struct XReparentEvent {
     pub override_redirect: c_int,
 }
 
+#[repr(C)]
 pub struct XConfigureEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -558,6 +599,7 @@ pub struct XConfigureEvent {
     pub override_redirect: c_int,
 }
 
+#[repr(C)]
 pub struct XGravityEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -569,6 +611,7 @@ pub struct XGravityEvent {
     pub y: c_int,
 }
 
+#[repr(C)]
 pub struct XResizeRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -579,6 +622,7 @@ pub struct XResizeRequestEvent {
     pub height: c_int,
 }
 
+#[repr(C)]
 pub struct XConfigureRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -596,6 +640,7 @@ pub struct XConfigureRequestEvent {
     pub value_mask: c_ulong,
 }
 
+#[repr(C)]
 pub struct XCirculateEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -606,6 +651,7 @@ pub struct XCirculateEvent {
     pub place: c_int,
 }
 
+#[repr(C)]
 pub struct XCirculateRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -616,6 +662,7 @@ pub struct XCirculateRequestEvent {
     pub place: c_int,
 }
 
+#[repr(C)]
 pub struct XPropertyEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -627,6 +674,7 @@ pub struct XPropertyEvent {
     pub state: c_int,
 }
 
+#[repr(C)]
 pub struct XSelectionClearEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -637,6 +685,7 @@ pub struct XSelectionClearEvent {
     pub time: Time,
 }
 
+#[repr(C)]
 pub struct XSelectionRequestEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -650,6 +699,7 @@ pub struct XSelectionRequestEvent {
     pub time: Time,
 }
 
+#[repr(C)]
 pub struct XSelectionEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -662,6 +712,7 @@ pub struct XSelectionEvent {
     pub time: Time,
 }
 
+#[repr(C)]
 pub struct XColormapEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -673,6 +724,7 @@ pub struct XColormapEvent {
     pub state: c_int,
 }
 
+#[repr(C)]
 pub struct XClientMessageEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -684,6 +736,7 @@ pub struct XClientMessageEvent {
     pub data: union_unnamed2,
 }
 
+#[repr(C)]
 pub struct XMappingEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -695,6 +748,7 @@ pub struct XMappingEvent {
     pub count: c_int,
 }
 
+#[repr(C)]
 pub struct XErrorEvent {
     pub _type: c_int,
     pub display: *mut Display,
@@ -705,6 +759,7 @@ pub struct XErrorEvent {
     pub minor_code: c_uchar,
 }
 
+#[repr(C)]
 pub struct XAnyEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -713,6 +768,7 @@ pub struct XAnyEvent {
     pub window: Window,
 }
 
+#[repr(C)]
 pub struct XGenericEvent {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -722,6 +778,7 @@ pub struct XGenericEvent {
     pub evtype: c_int,
 }
 
+#[repr(C)]
 pub struct XGenericEventCookie {
     pub _type: c_int,
     pub serial: c_ulong,
@@ -737,6 +794,7 @@ pub type union__XEvent = c_void /* FIXME: union type */;
 
 pub type XEvent = union__XEvent;
 
+#[repr(C)]
 pub struct XCharStruct {
     pub lbearing: c_short,
     pub rbearing: c_short,
@@ -746,11 +804,13 @@ pub struct XCharStruct {
     pub attributes: c_ushort,
 }
 
+#[repr(C)]
 pub struct XFontProp {
     pub name: Atom,
     pub card32: c_ulong,
 }
 
+#[repr(C)]
 pub struct XFontStruct {
     pub ext_data: *mut XExtData,
     pub fid: Font,
@@ -770,6 +830,7 @@ pub struct XFontStruct {
     pub descent: c_int,
 }
 
+#[repr(C)]
 pub struct XTextItem {
     pub chars: *mut c_char,
     pub nchars: c_int,
@@ -777,11 +838,13 @@ pub struct XTextItem {
     pub font: Font,
 }
 
+#[repr(C)]
 pub struct XChar2b {
     pub byte1: c_uchar,
     pub byte2: c_uchar,
 }
 
+#[repr(C)]
 pub struct XTextItem16 {
     pub chars: *mut XChar2b,
     pub nchars: c_int,
@@ -791,6 +854,7 @@ pub struct XTextItem16 {
 
 pub type XEDataObject = c_void /* FIXME: union type */;
 
+#[repr(C)]
 pub struct XFontSetExtents {
     pub max_ink_extent: XRectangle,
     pub max_logical_extent: XRectangle,
@@ -806,6 +870,7 @@ pub type XOC = *mut struct__XOC;
 
 pub type XFontSet = *mut struct__XOC;
 
+#[repr(C)]
 pub struct XmbTextItem {
     pub chars: *mut c_char,
     pub nchars: c_int,
@@ -813,6 +878,7 @@ pub struct XmbTextItem {
     pub font_set: *mut c_void /* XFontSet */,
 }
 
+#[repr(C)]
 pub struct XwcTextItem {
     pub chars: *mut wchar_t,
     pub nchars: c_int,
@@ -820,6 +886,7 @@ pub struct XwcTextItem {
     pub font_set: *mut c_void /* XFontSet */,
 }
 
+#[repr(C)]
 pub struct XOMCharSetList {
     pub charset_count: c_int,
     pub charset_list: *mut *mut c_char,
@@ -833,11 +900,13 @@ pub static XOMOrientation_TTB_LTR: u32 = 2_u32;
 pub static XOMOrientation_TTB_RTL: u32 = 3_u32;
 pub static XOMOrientation_Context: u32 = 4_u32;
 
+#[repr(C)]
 pub struct XOMOrientation {
     pub num_orientation: c_int,
     pub orientation: *mut XOrientation,
 }
 
+#[repr(C)]
 pub struct XOMFontInfo {
     pub num_font: c_int,
     pub font_struct_list: *mut *mut XFontStruct,
@@ -860,6 +929,7 @@ pub type XIDProc = *mut u8;
 
 pub type XIMStyle = c_ulong;
 
+#[repr(C)]
 pub struct XIMStyles {
     pub count_styles: c_ushort,
     pub supported_styles: *mut XIMStyle,
@@ -867,11 +937,13 @@ pub struct XIMStyles {
 
 pub type XVaNestedList = *mut c_void;
 
+#[repr(C)]
 pub struct XIMCallback {
     pub client_data: XPointer,
     pub callback: XIMProc,
 }
 
+#[repr(C)]
 pub struct XICCallback {
     pub client_data: XPointer,
     pub callback: XICProc,
@@ -879,6 +951,7 @@ pub struct XICCallback {
 
 pub type XIMFeedback = c_ulong;
 
+#[repr(C)]
 pub struct struct__XIMText {
     pub length: c_ushort,
     pub feedback: *mut XIMFeedback,
@@ -890,6 +963,7 @@ pub type XIMText = struct__XIMText;
 
 pub type XIMPreeditState = c_ulong;
 
+#[repr(C)]
 pub struct struct__XIMPreeditStateNotifyCallbackStruct {
     pub state: XIMPreeditState,
 }
@@ -900,6 +974,7 @@ pub type XIMResetState = c_ulong;
 
 pub type XIMStringConversionFeedback = c_ulong;
 
+#[repr(C)]
 pub struct struct__XIMStringConversionText {
     pub length: c_ushort,
     pub feedback: *mut XIMStringConversionFeedback,
@@ -930,6 +1005,7 @@ pub static XIMLineEnd: u32 = 9_u32;
 pub static XIMAbsolutePosition: u32 = 10_u32;
 pub static XIMDontChange: u32 = 11_u32;
 
+#[repr(C)]
 pub struct struct__XIMStringConversionCallbackStruct {
     pub position: XIMStringConversionPosition,
     pub direction: XIMCaretDirection,
@@ -940,6 +1016,7 @@ pub struct struct__XIMStringConversionCallbackStruct {
 
 pub type XIMStringConversionCallbackStruct = struct__XIMStringConversionCallbackStruct;
 
+#[repr(C)]
 pub struct struct__XIMPreeditDrawCallbackStruct {
     pub caret: c_int,
     pub chg_first: c_int,
@@ -955,6 +1032,7 @@ pub static XIMIsInvisible: u32 = 0_u32;
 pub static XIMIsPrimary: u32 = 1_u32;
 pub static XIMIsSecondary: u32 = 2_u32;
 
+#[repr(C)]
 pub struct struct__XIMPreeditCaretCallbackStruct {
     pub position: c_int,
     pub direction: XIMCaretDirection,
@@ -968,6 +1046,7 @@ pub type XIMStatusDataType = c_uint;
 pub static XIMTextType: u32 = 0_u32;
 pub static XIMBitmapType: u32 = 1_u32;
 
+#[repr(C)]
 pub struct struct__XIMStatusDrawCallbackStruct {
     pub _type: XIMStatusDataType,
     pub data: union_unnamed5,
@@ -975,6 +1054,7 @@ pub struct struct__XIMStatusDrawCallbackStruct {
 
 pub type XIMStatusDrawCallbackStruct = struct__XIMStatusDrawCallbackStruct;
 
+#[repr(C)]
 pub struct struct__XIMHotKeyTrigger {
     pub keysym: KeySym,
     pub modifier: c_int,
@@ -983,6 +1063,7 @@ pub struct struct__XIMHotKeyTrigger {
 
 pub type XIMHotKeyTrigger = struct__XIMHotKeyTrigger;
 
+#[repr(C)]
 pub struct struct__XIMHotKeyTriggers {
     pub num_hot_key: c_int,
     pub key: *mut XIMHotKeyTrigger,
@@ -992,6 +1073,7 @@ pub type XIMHotKeyTriggers = struct__XIMHotKeyTriggers;
 
 pub type XIMHotKeyState = c_ulong;
 
+#[repr(C)]
 pub struct XIMValuesList {
     pub count_values: c_ushort,
     pub supported_values: *mut *mut c_char,
@@ -1013,6 +1095,7 @@ pub type union_unnamed2 = c_void /* FIXME: union type */;
 
 pub type union_unnamed4 = c_void /* FIXME: union type */;
 
+#[repr(C)]
 pub struct struct_unnamed1 {
     pub ext_data: *mut XExtData,
     pub private1: *mut c_void /* struct__XPrivate */,
@@ -1062,6 +1145,7 @@ pub struct struct_unnamed1 {
 
 // Additions --pcwalton
 
+#[repr(C)]
 pub struct XVisualInfo {
     pub visual: *mut Visual,
     pub visualid: VisualID,
