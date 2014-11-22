@@ -990,6 +990,12 @@ pub type XIMStringConversionType = c_ushort;
 
 pub type XIMStringConversionOperation = c_ushort;
 
+#[repr(C)]
+pub struct XClassHint {
+    pub res_hint: *mut c_char,
+    pub res_class: *mut c_char
+}
+
 
 pub type XIMCaretDirection = c_uint;
 pub static XIMForwardChar: u32 = 0_u32;
@@ -1559,6 +1565,8 @@ extern {
     pub fn XFreePixmap(arg0: *mut Display, arg1: Pixmap) -> c_int;
 
     pub fn XGeometry(arg0: *mut Display, arg1: c_int, arg2: *mut c_char, arg3: *mut c_char, arg4: c_uint, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int, arg9: *mut c_int, arg10: *mut c_int, arg11: *mut c_int, arg12: *mut c_int) -> c_int;
+
+    pub fn XGetClassHint(arg0: *mut Display, arg1: Window, arg2: *mut XClassHint) -> c_int;
 
     pub fn XGetErrorDatabaseText(arg0: *mut Display, arg1: *mut c_char, arg2: *mut c_char, arg3: *mut c_char, arg4: *mut c_char, arg5: c_int) -> c_int;
 
