@@ -734,20 +734,43 @@ pub struct XClientMessageEvent {
     pub window: Window,
     pub message_type: Atom,
     pub format: c_int,
-    pub l: [c_long, ..5],
+    pub data: [int32_t, ..5],
 }
 
 impl XClientMessageEvent {
-    pub fn b(&self) -> &[c_char] {
-        unsafe {
-            mem::transmute_copy(&self.l)
+    pub fn get_b(&self) -> Option<&[int8_t]> {
+        match self.format {
+            8  => Some(unsafe { mem::transmute_copy(&self.data) }),
+            _  => None
         }
     }
 
-    pub fn s(&self) -> &[c_short] {
-        unsafe {
-            mem::transmute_copy(&self.l)
+    pub fn get_s(&self) -> Option<&[int16_t]> {
+        match self.format {
+            16 => Some(unsafe { mem::transmute_copy(&self.data) }),
+            _  => None
         }
+    }
+
+    pub fn get_l(&self) -> Option<&[int32_t]> {
+        match self.format {
+            32 => Some(unsafe { mem::transmute_copy(&self.data) }),
+            _  => None
+        }
+    }
+
+    pub fn set_b(&mut self, v: &[int8_t]) {
+        self.format = 8;
+        self.data = unsafe { mem::transmute_copy(&v) };
+    }
+
+    pub fn set_s(&mut self, v: &[int16_t]) {
+        self.format = 8;
+        self.data = unsafe { mem::transmute_copy(&v) };
+    }
+    pub fn set_l(&mut self, v: &[int32_t]) {
+        self.format = 8;
+        self.data = unsafe { mem::transmute_copy(&v) };
     }
 }
 
@@ -1111,8 +1134,6 @@ pub type XConnectionWatchProc = *mut u8;
 pub type union_unnamed3 = c_void /* FIXME: union type */;
 
 pub type union_unnamed5 = c_void /* FIXME: union type */;
-
-pub type union_unnamed2 = c_void /* FIXME: union type */;
 
 pub type union_unnamed4 = c_void /* FIXME: union type */;
 
