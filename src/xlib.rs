@@ -11,6 +11,7 @@
 #![allow(non_camel_case_types)]
 
 use libc::*;
+use std::mem;
 
 pub type XID = c_ulong;
 
@@ -733,7 +734,21 @@ pub struct XClientMessageEvent {
     pub window: Window,
     pub message_type: Atom,
     pub format: c_int,
-    pub data: union_unnamed2,
+    pub l: [c_long, ..5],
+}
+
+impl XClientMessageEvent {
+    pub fn b(&self) -> &[c_char] {
+        unsafe {
+            mem::transmute_copy(&self.l)
+        }
+    }
+
+    pub fn s(&self) -> &[c_short] {
+        unsafe {
+            mem::transmute_copy(&self.l)
+        }
+    }
 }
 
 #[repr(C)]
