@@ -1159,6 +1159,12 @@ pub struct XVisualInfo {
     pub bits_per_rgb: c_int,
 }
 
+#[repr(C)]
+pub struct XClassHint {
+    pub res_name: *mut c_char,
+    pub res_class: *mut c_char
+}
+
 pub static ZPixmap: c_int = 2;  // depth == drawable depth
 
 #[link(name="X11")]
@@ -1199,6 +1205,8 @@ extern {
     pub fn XGetAtomName(arg0: *mut Display, arg1: Atom) -> *mut c_char;
 
     pub fn XGetAtomNames(arg0: *mut Display, arg1: *mut Atom, arg2: c_int, arg3: *mut *mut c_char) -> c_int;
+
+    pub fn XGetClassName(arg0: *mut Display, arg1: Window, arg2: *mut XClassHint) -> c_int;
 
     pub fn XGetDefault(arg0: *mut Display, arg1: *mut c_char, arg2: *mut c_char) -> *mut c_char;
 
