@@ -738,39 +738,39 @@ pub struct XClientMessageEvent {
 }
 
 impl XClientMessageEvent {
-    pub fn get_b(&self) -> Option<&[int8_t]> {
+    pub fn get_b(&self) -> Option<&[int8_t, ..20]> {
         match self.format {
             8  => Some(unsafe { mem::transmute_copy(&self.data) }),
             _  => None
         }
     }
 
-    pub fn get_s(&self) -> Option<&[int16_t]> {
+    pub fn get_s(&self) -> Option<&[int16_t, ..10]> {
         match self.format {
             16 => Some(unsafe { mem::transmute_copy(&self.data) }),
             _  => None
         }
     }
 
-    pub fn get_l(&self) -> Option<&[int32_t]> {
+    pub fn get_l(&self) -> Option<&[int32_t, ..5]> {
         match self.format {
             32 => Some(unsafe { mem::transmute_copy(&self.data) }),
             _  => None
         }
     }
 
-    pub fn set_b(&mut self, v: &[int8_t]) {
+    pub fn set_b(&mut self, v: &[int8_t, ..20]) {
         self.format = 8;
         self.data = unsafe { mem::transmute_copy(&v) };
     }
 
-    pub fn set_s(&mut self, v: &[int16_t]) {
+    pub fn set_s(&mut self, v: &[int16_t, ..10]) {
         self.format = 16;
         self.data = unsafe { mem::transmute_copy(&v) };
     }
-    pub fn set_l(&mut self, v: &[int32_t]) {
+    pub fn set_l(&mut self, v: &[int32_t, ..5]) {
         self.format = 32;
-        self.data = unsafe { mem::transmute_copy(&v) };
+        self.data = unsafe { mem::transmute_copy(v) };
     }
 }
 
