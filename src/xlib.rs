@@ -11,6 +11,7 @@
 #![allow(non_camel_case_types)]
 
 use libc::*;
+use std::mem;
 
 pub type XID = c_ulong;
 
@@ -733,7 +734,44 @@ pub struct XClientMessageEvent {
     pub window: Window,
     pub message_type: Atom,
     pub format: c_int,
-    pub data: union_unnamed2,
+    pub data: [int32_t, ..5],
+}
+
+impl XClientMessageEvent {
+    pub fn get_b(&self) -> Option<&[int8_t]> {
+        match self.format {
+            8  => Some(unsafe { mem::transmute_copy(&self.data) }),
+            _  => None
+        }
+    }
+
+    pub fn get_s(&self) -> Option<&[int16_t]> {
+        match self.format {
+            16 => Some(unsafe { mem::transmute_copy(&self.data) }),
+            _  => None
+        }
+    }
+
+    pub fn get_l(&self) -> Option<&[int32_t]> {
+        match self.format {
+            32 => Some(unsafe { mem::transmute_copy(&self.data) }),
+            _  => None
+        }
+    }
+
+    pub fn set_b(&mut self, v: &[int8_t]) {
+        self.format = 8;
+        self.data = unsafe { mem::transmute_copy(&v) };
+    }
+
+    pub fn set_s(&mut self, v: &[int16_t]) {
+        self.format = 8;
+        self.data = unsafe { mem::transmute_copy(&v) };
+    }
+    pub fn set_l(&mut self, v: &[int32_t]) {
+        self.format = 8;
+        self.data = unsafe { mem::transmute_copy(&v) };
+    }
 }
 
 #[repr(C)]
@@ -990,6 +1028,12 @@ pub type XIMStringConversionType = c_ushort;
 
 pub type XIMStringConversionOperation = c_ushort;
 
+#[repr(C)]
+pub struct XClassHint {
+    pub res_hint: *mut c_char,
+    pub res_class: *mut c_char
+}
+
 
 pub type XIMCaretDirection = c_uint;
 pub static XIMForwardChar: u32 = 0_u32;
@@ -1090,8 +1134,6 @@ pub type XConnectionWatchProc = *mut u8;
 pub type union_unnamed3 = c_void /* FIXME: union type */;
 
 pub type union_unnamed5 = c_void /* FIXME: union type */;
-
-pub type union_unnamed2 = c_void /* FIXME: union type */;
 
 pub type union_unnamed4 = c_void /* FIXME: union type */;
 
@@ -1559,6 +1601,8 @@ extern {
     pub fn XFreePixmap(arg0: *mut Display, arg1: Pixmap) -> c_int;
 
     pub fn XGeometry(arg0: *mut Display, arg1: c_int, arg2: *mut c_char, arg3: *mut c_char, arg4: c_uint, arg5: c_uint, arg6: c_uint, arg7: c_int, arg8: c_int, arg9: *mut c_int, arg10: *mut c_int, arg11: *mut c_int, arg12: *mut c_int) -> c_int;
+
+    pub fn XGetClassHint(arg0: *mut Display, arg1: Window, arg2: *mut XClassHint) -> c_int;
 
     pub fn XGetErrorDatabaseText(arg0: *mut Display, arg1: *mut c_char, arg2: *mut c_char, arg3: *mut c_char, arg4: *mut c_char, arg5: c_int) -> c_int;
 
