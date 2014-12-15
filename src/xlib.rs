@@ -1165,6 +1165,32 @@ pub struct XClassHint {
     pub res_class: *mut c_char
 }
 
+#[repr(C)]
+pub struct XSizeHintInternal {
+    pub x: c_int,
+    pub y: c_int
+}
+
+#[repr(C)]
+pub struct XSizeHints {
+    pub flags: c_long,
+    pub x: c_int,
+    pub y: c_int,
+    pub width: c_int,
+    pub height: c_int,
+    pub min_width: c_int,
+    pub min_height: c_int,
+    pub max_width: c_int,
+    pub max_height: c_int,
+    pub width_inc: c_int,
+    pub height_inc: c_int,
+    pub min_aspect: XSizeHintInternal,
+    pub max_aspect: XSizeHintInternal,
+    pub base_width: c_int,
+    pub base_height: c_int,
+    pub win_gravity: c_int
+}
+
 pub static ZPixmap: c_int = 2;  // depth == drawable depth
 
 #[link(name="X11")]
@@ -1595,6 +1621,8 @@ extern {
     pub fn XGetWindowProperty(arg0: *mut Display, arg1: Window, arg2: Atom, arg3: c_long, arg4: c_long, arg5: c_int, arg6: Atom, arg7: *mut Atom, arg8: *mut c_int, arg9: *mut c_ulong, arg10: *mut c_ulong, arg11: *mut *mut c_uchar) -> c_int;
 
     pub fn XGetWindowAttributes(arg0: *mut Display, arg1: Window, arg2: *mut XWindowAttributes) -> c_int;
+
+    pub fn XGetWMNormalHints(arg0: *mut Display, arg1: Window, arg2: *mut XSizeHints, arg3: *mut c_long) -> c_int;
 
     pub fn XGrabButton(arg0: *mut Display, arg1: c_uint, arg2: c_uint, arg3: Window, arg4: c_int, arg5: c_uint, arg6: c_int, arg7: c_int, arg8: Window, arg9: Cursor) -> c_int;
 
