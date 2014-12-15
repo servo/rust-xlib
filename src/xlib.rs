@@ -1165,6 +1165,25 @@ pub struct XClassHint {
     pub res_class: *mut c_char
 }
 
+bitflags! {
+    flags XSizeHintFlags: c_long {
+        const USPosition   = 0x00000001,
+        const USSize       = 0x00000002,
+        const PPosition    = 0x00000004,
+        const PSize        = 0x00000008,
+        const PMinSize     = 0x00000010,
+        const PMaxSize     = 0x00000020,
+        const PResizeInc   = 0x00000040,
+        const PAspect      = 0x00000080,
+        const PBaseSize    = 0x00000100,
+        const PWinGravity  = 0x00000200,
+        const PAllHints    =
+            USPosition.bits | USSize.bits | PPosition.bits | PSize.bits |
+            PMinSize.bits | PMaxSize.bits | PResizeInc.bits | PAspect.bits |
+            PBaseSize.bits | PWinGravity.bits
+    }
+}
+
 #[repr(C)]
 pub struct XSizeHintInternal {
     pub x: c_int,
@@ -1173,7 +1192,7 @@ pub struct XSizeHintInternal {
 
 #[repr(C)]
 pub struct XSizeHints {
-    pub flags: c_long,
+    pub flags: XSizeHintFlags,
     pub x: c_int,
     pub y: c_int,
     pub width: c_int,
