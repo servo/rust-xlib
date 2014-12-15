@@ -1178,9 +1178,8 @@ bitflags! {
         const PBaseSize    = 0x00000100,
         const PWinGravity  = 0x00000200,
         const PAllHints    =
-            USPosition.bits | USSize.bits | PPosition.bits | PSize.bits |
-            PMinSize.bits | PMaxSize.bits | PResizeInc.bits | PAspect.bits |
-            PBaseSize.bits | PWinGravity.bits
+            PPosition.bits | PSize.bits |
+            PMinSize.bits | PMaxSize.bits | PResizeInc.bits | PAspect.bits
     }
 }
 
