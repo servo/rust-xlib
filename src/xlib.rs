@@ -9,6 +9,7 @@
 
 #![allow(non_upper_case_globals)]
 #![allow(non_camel_case_types)]
+#![allow(missing_copy_implementations)]
 
 use libc::*;
 
@@ -1087,13 +1088,15 @@ pub type XIOErrorHandler = *mut u8;
 
 pub type XConnectionWatchProc = *mut u8;
 
-pub type union_unnamed3 = c_void /* FIXME: union type */;
+/* FIXME: these are changed from c_void to force alignment */
 
-pub type union_unnamed5 = c_void /* FIXME: union type */;
+pub type union_unnamed3 = *const c_void /* FIXME: union type */;
 
-pub type union_unnamed2 = c_void /* FIXME: union type */;
+pub type union_unnamed5 = *const c_void /* FIXME: union type */;
 
-pub type union_unnamed4 = c_void /* FIXME: union type */;
+pub type union_unnamed2 = c_long /* FIXME: union type */;
+
+pub type union_unnamed4 = *const c_void /* FIXME: union type */;
 
 #[repr(C)]
 pub struct struct_unnamed1 {
