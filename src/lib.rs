@@ -12,8 +12,6 @@
 #![crate_type = "dylib"]
 #![crate_type = "rlib"]
 
-#![feature(globs)]
-
 extern crate libc;
 
 pub use xlib::*;
