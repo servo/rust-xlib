@@ -13,6 +13,6 @@
 #![crate_type = "rlib"]
 
 extern crate libc;
-
+#[macro_use] extern crate bitflags;
 pub use xlib::*;
 mod xlib;
