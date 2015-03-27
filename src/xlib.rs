@@ -1258,6 +1258,43 @@ bitflags! {
     }
 }
 
+// event names, from <X11/X.h>
+pub static KeyPress: c_int         = 2;
+pub static KeyRelease: c_int       = 3;
+pub static ButtonPress: c_int      = 4;
+pub static ButtonRelease: c_int    = 5;
+pub static MotionNotify: c_int     = 6;
+pub static EnterNotify: c_int      = 7;
+pub static LeaveNotify: c_int      = 8;
+pub static FocusIn: c_int          = 9;
+pub static FocusOut: c_int         = 10;
+pub static KeymapNotify: c_int     = 11;
+pub static Expose: c_int           = 12;
+pub static GraphicsExpose: c_int   = 13;
+pub static NoExpose: c_int         = 14;
+pub static VisibilityNotify: c_int = 15;
+pub static CreateNotify: c_int     = 16;
+pub static DestroyNotify: c_int    = 17;
+pub static UnmapNotify: c_int      = 18;
+pub static MapNotify: c_int        = 19;
+pub static MapRequest: c_int       = 20;
+pub static ReparentNotify: c_int   = 21;
+pub static ConfigureNotify: c_int  = 22;
+pub static ConfigureRequest: c_int = 23;
+pub static GravityNotify: c_int    = 24;
+pub static ResizeRequest: c_int    = 25;
+pub static CirculateNotify: c_int  = 26;
+pub static CirculateRequest: c_int = 27;
+pub static PropertyNotify: c_int   = 28;
+pub static SelectionClear: c_int   = 29;
+pub static SelectionRequest: c_int = 30;
+pub static SelectionNotify: c_int  = 31;
+pub static ColormapNotify: c_int   = 32;
+pub static ClientMessage: c_int    = 33;
+pub static MappingNotify: c_int    = 34;
+pub static GenericEvent: c_int     = 35;
+pub static LASTEvent: c_int        = 36;
+
 #[repr(C)]
 pub struct XSizeHintInternal {
     pub x: c_int,
