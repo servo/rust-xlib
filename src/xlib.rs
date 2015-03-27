@@ -2074,3 +2074,39 @@ extern {
     pub fn XFreeEventData(arg0: *mut Display, arg1: *mut XGenericEventCookie);
 
 }
+
+#[link(name="Xmu")]
+extern {
+
+    // from <X11/Xmu/Atoms.h>
+    pub static _XA_ATOM_PAIR: *mut Atom;
+    pub static _XA_CHARACTER_POSITION: *mut Atom;
+    pub static _XA_CLASS: *mut Atom;
+    pub static _XA_CLIENT_WINDOW: *mut Atom;
+    pub static _XA_CLIPBOARD: *mut Atom;
+    pub static _XA_COMPOUND_TEXT: *mut Atom;
+    pub static _XA_DECNET_ADDRESS: *mut Atom;
+    pub static _XA_DELETE: *mut Atom;
+    pub static _XA_FILENAME: *mut Atom;
+    pub static _XA_HOSTNAME: *mut Atom;
+    pub static _XA_IP_ADDRESS: *mut Atom;
+    pub static _XA_LENGTH: *mut Atom;
+    pub static _XA_LIST_LENGTH: *mut Atom;
+    pub static _XA_NAME: *mut Atom;
+    pub static _XA_NET_ADDRESS: *mut Atom;
+    pub static _XA_NULL: *mut Atom;
+    pub static _XA_OWNER_OS: *mut Atom;
+    pub static _XA_SPAN: *mut Atom;
+    pub static _XA_TARGETS: *mut Atom;
+    pub static _XA_TEXT: *mut Atom;
+    pub static _XA_TIMESTAMP: *mut Atom;
+    pub static _XA_USER: *mut Atom;
+    pub static _XA_UTF8_STRING: *mut Atom;
+
+    pub fn XmuGetAtomName(dpy: *mut Display, atom: Atom) -> *mut c_char;
+    pub fn XmuInternAtom(dpy: *mut Display, atom_ptr: *mut Atom) -> Atom;
+    pub fn XmuInternStrings(dpy: *mut Display, names: *mut *mut c_char, count: c_uint, atoms_return: *mut Atom);
+    pub fn XmuMakeAtom(name: *const c_char) -> *mut Atom;
+    pub fn XmuNameOfAtom(atom_ptr: *mut Atom) -> *mut c_char;
+
+}
