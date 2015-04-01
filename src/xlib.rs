@@ -791,51 +791,10 @@ pub struct XGenericEventCookie {
     pub data: *mut c_void,
 }
 
-pub type union__XEvent = c_void /* FIXME: union type */;
-
-pub type XEvent = union__XEvent;
-
-// workaround for lack of {static sizeof, something layout-compatible with C unions}
-pub fn get_size_for_XEvent() -> usize {
-    // from <X11/Xlib.h>
-    // int type;
-    size_of::<c_int>() +
-    // possible values for the union
-    *[size_of::<XAnyEvent>(),
-    size_of::<XKeyEvent>(),
-    size_of::<XButtonEvent>(),
-    size_of::<XMotionEvent>(),
-    size_of::<XCrossingEvent>(),
-    size_of::<XFocusChangeEvent>(),
-    size_of::<XExposeEvent>(),
-    size_of::<XGraphicsExposeEvent>(),
-    size_of::<XNoExposeEvent>(),
-    size_of::<XVisibilityEvent>(),
-    size_of::<XCreateWindowEvent>(),
-    size_of::<XDestroyWindowEvent>(),
-    size_of::<XUnmapEvent>(),
-    size_of::<XMapEvent>(),
-    size_of::<XMapRequestEvent>(),
-    size_of::<XReparentEvent>(),
-    size_of::<XConfigureEvent>(),
-    size_of::<XGravityEvent>(),
-    size_of::<XResizeRequestEvent>(),
-    size_of::<XConfigureRequestEvent>(),
-    size_of::<XCirculateEvent>(),
-    size_of::<XCirculateRequestEvent>(),
-    size_of::<XPropertyEvent>(),
-    size_of::<XSelectionClearEvent>(),
-    size_of::<XSelectionRequestEvent>(),
-    size_of::<XSelectionEvent>(),
-    size_of::<XColormapEvent>(),
-    size_of::<XClientMessageEvent>(),
-    size_of::<XMappingEvent>(),
-    size_of::<XErrorEvent>(),
-    size_of::<XKeymapEvent>(),
-    size_of::<XGenericEvent>(),
-    size_of::<XGenericEventCookie>()].iter().max().unwrap() +
-    // long pad[24];
-    24 * size_of::<c_long>()
+#[repr(C)]
+pub struct XEvent {
+    pub _type: c_int,
+    pub pad: [c_ulong; 24]
 }
 
 #[repr(C)]
