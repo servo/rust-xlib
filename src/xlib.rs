@@ -1088,15 +1088,13 @@ pub type XIOErrorHandler = *mut u8;
 
 pub type XConnectionWatchProc = *mut u8;
 
-/* FIXME: these are changed from c_void to force alignment */
+pub type union_unnamed3 = usize /* FIXME: union type */;
 
-pub type union_unnamed3 = *const c_void /* FIXME: union type */;
+pub type union_unnamed5 = usize /* FIXME: union type */;
 
-pub type union_unnamed5 = *const c_void /* FIXME: union type */;
+pub type union_unnamed2 = usize /* FIXME: union type */;
 
-pub type union_unnamed2 = c_long /* FIXME: union type */;
-
-pub type union_unnamed4 = *const c_void /* FIXME: union type */;
+pub type union_unnamed4 = usize /* FIXME: union type */;
 
 #[repr(C)]
 pub struct struct_unnamed1 {
