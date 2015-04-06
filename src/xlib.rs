@@ -10,7 +10,6 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_camel_case_types)]
 
-use std::mem::size_of;
 use libc::*;
 
 pub type XID = c_ulong;
