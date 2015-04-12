@@ -1166,6 +1166,7 @@ pub struct XClassHint {
 }
 
 bitflags! {
+    #[repr(C)]
     flags XSizeHintFlags: c_long {
         const USPosition   = 0x00000001,
         const USSize       = 0x00000002,
