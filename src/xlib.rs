@@ -2042,4 +2042,11 @@ extern {
 
     pub fn XFreeEventData(arg0: *mut Display, arg1: *mut XGenericEventCookie);
 
+    pub fn XCompositeQueryExtension(arg0: *mut Display, arg1: *mut c_int, arg2: *mut c_int) -> bool;
+
+    pub fn XCompositeQueryVersion(arg0: *mut Display, arg1: *mut c_int, arg2: *mut c_int) -> c_int;
+
+    pub fn XCompositeRedirectWindow(arg0: *mut Display, arg1: c_uint, arg2: c_int);
+
+    pub fn XCompositeRedirectSubwindows(arg0: *mut Display, arg1: c_uint, arg2: c_int);
 }
