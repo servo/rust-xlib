@@ -1,5 +1,9 @@
 language: rust
-sudo: false
+sudo: true
+
+install:
+ - sudo apt-get install libxmu6
+ - sudo apt-get install libxmu-dev
 
 script:
  - cargo build

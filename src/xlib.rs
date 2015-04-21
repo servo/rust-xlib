@@ -790,9 +790,11 @@ pub struct XGenericEventCookie {
     pub data: *mut c_void,
 }
 
-pub type union__XEvent = c_void /* FIXME: union type */;
-
-pub type XEvent = union__XEvent;
+#[repr(C)]
+pub struct XEvent {
+    pub _type: c_int,
+    pub pad: [c_ulong; 24]
+}
 
 #[repr(C)]
 pub struct XCharStruct {
@@ -1183,6 +1185,74 @@ bitflags! {
             PMinSize.bits | PMaxSize.bits | PResizeInc.bits | PAspect.bits
     }
 }
+
+bitflags! {
+    flags XInputEventMasks: c_long {
+        const NoEventMask              = 0,
+        const KeyPressMask             = (1<<0),
+        const KeyReleaseMask           = (1<<1),
+        const ButtonPressMask          = (1<<2),
+        const ButtonReleaseMask        = (1<<3),
+        const EnterWindowMask          = (1<<4),
+        const LeaveWindowMask          = (1<<5),
+        const PointerMotionMask        = (1<<6),
+        const PointerMotionHintMask    = (1<<7),
+        const Button1MotionMask        = (1<<8),
+        const Button2MotionMask        = (1<<9),
+        const Button3MotionMask        = (1<<10),
+        const Button4MotionMask        = (1<<11),
+        const Button5MotionMask        = (1<<12),
+        const ButtonMotionMask         = (1<<13),
+        const KeymapStateMask          = (1<<14),
+        const ExposureMask             = (1<<15),
+        const VisibilityChangeMask     = (1<<16),
+        const StructureNotifyMask      = (1<<17),
+        const ResizeRedirectMask       = (1<<18),
+        const SubstructureNotifyMask   = (1<<19),
+        const SubstructureRedirectMask = (1<<20),
+        const FocusChangeMask          = (1<<21),
+        const PropertyChangeMask       = (1<<22),
+        const ColormapChangeMask       = (1<<23),
+        const OwnerGrabButtonMask      = (1<<24),
+    }
+}
+
+// event names, from <X11/X.h>
+pub static KeyPress: c_int         = 2;
+pub static KeyRelease: c_int       = 3;
+pub static ButtonPress: c_int      = 4;
+pub static ButtonRelease: c_int    = 5;
+pub static MotionNotify: c_int     = 6;
+pub static EnterNotify: c_int      = 7;
+pub static LeaveNotify: c_int      = 8;
+pub static FocusIn: c_int          = 9;
+pub static FocusOut: c_int         = 10;
+pub static KeymapNotify: c_int     = 11;
+pub static Expose: c_int           = 12;
+pub static GraphicsExpose: c_int   = 13;
+pub static NoExpose: c_int         = 14;
+pub static VisibilityNotify: c_int = 15;
+pub static CreateNotify: c_int     = 16;
+pub static DestroyNotify: c_int    = 17;
+pub static UnmapNotify: c_int      = 18;
+pub static MapNotify: c_int        = 19;
+pub static MapRequest: c_int       = 20;
+pub static ReparentNotify: c_int   = 21;
+pub static ConfigureNotify: c_int  = 22;
+pub static ConfigureRequest: c_int = 23;
+pub static GravityNotify: c_int    = 24;
+pub static ResizeRequest: c_int    = 25;
+pub static CirculateNotify: c_int  = 26;
+pub static CirculateRequest: c_int = 27;
+pub static PropertyNotify: c_int   = 28;
+pub static SelectionClear: c_int   = 29;
+pub static SelectionRequest: c_int = 30;
+pub static SelectionNotify: c_int  = 31;
+pub static ColormapNotify: c_int   = 32;
+pub static ClientMessage: c_int    = 33;
+pub static MappingNotify: c_int    = 34;
+pub static GenericEvent: c_int     = 35;
+pub static LASTEvent: c_int        = 36;
 
 #[repr(C)]
 pub struct XSizeHintInternal {
@@ -2044,3 +2114,111 @@ extern {
     pub fn XFreeEventData(arg0: *mut Display, arg1: *mut XGenericEventCookie);
 
 }
+
+#[link(name="Xmu")]
+extern {
+
+    // from <X11/Xmu/Atoms.h>
+    pub static _XA_ATOM_PAIR: *mut Atom;
+    pub static _XA_CHARACTER_POSITION: *mut Atom;
+    pub static _XA_CLASS: *mut Atom;
+    pub static _XA_CLIENT_WINDOW: *mut Atom;
+    pub static _XA_CLIPBOARD: *mut Atom;
+    pub static _XA_COMPOUND_TEXT: *mut Atom;
+    pub static _XA_DECNET_ADDRESS: *mut Atom;
+    pub static _XA_DELETE: *mut Atom;
+    pub static _XA_FILENAME: *mut Atom;
+    pub static _XA_HOSTNAME: *mut Atom;
+    pub static _XA_IP_ADDRESS: *mut Atom;
+    pub static _XA_LENGTH: *mut Atom;
+    pub static _XA_LIST_LENGTH: *mut Atom;
+    pub static _XA_NAME: *mut Atom;
+    pub static _XA_NET_ADDRESS: *mut Atom;
+    pub static _XA_NULL: *mut Atom;
+    pub static _XA_OWNER_OS: *mut Atom;
+    pub static _XA_SPAN: *mut Atom;
+    pub static _XA_TARGETS: *mut Atom;
+    pub static _XA_TEXT: *mut Atom;
+    pub static _XA_TIMESTAMP: *mut Atom;
+    pub static _XA_USER: *mut Atom;
+    pub static _XA_UTF8_STRING: *mut Atom;
+
+    pub fn XmuGetAtomName(dpy: *mut Display, atom: Atom) -> *mut c_char;
+    pub fn XmuInternAtom(dpy: *mut Display, atom_ptr: *mut Atom) -> Atom;
+    pub fn XmuInternStrings(dpy: *mut Display, names: *mut *mut c_char, count: c_uint, atoms_return: *mut Atom);
+    pub fn XmuMakeAtom(name: *const c_char) -> *mut Atom;
+    pub fn XmuNameOfAtom(atom_ptr: *mut Atom) -> *mut c_char;
+
+}
+
+// from <X11/Xatom.h>
+pub static XA_PRIMARY: Atom = 1;
+pub static XA_SECONDARY: Atom = 2;
+pub static XA_ARC: Atom = 3;
+pub static XA_ATOM: Atom = 4;
+pub static XA_BITMAP: Atom = 5;
+pub static XA_CARDINAL: Atom = 6;
+pub static XA_COLORMAP: Atom = 7;
+pub static XA_CURSOR: Atom = 8;
+pub static XA_CUT_BUFFER0: Atom = 9;
+pub static XA_CUT_BUFFER1: Atom = 10;
+pub static XA_CUT_BUFFER2: Atom = 11;
+pub static XA_CUT_BUFFER3: Atom = 12;
+pub static XA_CUT_BUFFER4: Atom = 13;
+pub static XA_CUT_BUFFER5: Atom = 14;
+pub static XA_CUT_BUFFER6: Atom = 15;
+pub static XA_CUT_BUFFER7: Atom = 16;
+pub static XA_DRAWABLE: Atom = 17;
+pub static XA_FONT: Atom = 18;
+pub static XA_INTEGER: Atom = 19;
+pub static XA_PIXMAP: Atom = 20;
+pub static XA_POINT: Atom = 21;
+pub static XA_RECTANGLE: Atom = 22;
+pub static XA_RESOURCE_MANAGER: Atom = 23;
+pub static XA_RGB_COLOR_MAP: Atom = 24;
+pub static XA_RGB_BEST_MAP: Atom = 25;
+pub static XA_RGB_BLUE_MAP: Atom = 26;
+pub static XA_RGB_DEFAULT_MAP: Atom = 27;
+pub static XA_RGB_GRAY_MAP: Atom = 28;
+pub static XA_RGB_GREEN_MAP: Atom = 29;
+pub static XA_RGB_RED_MAP: Atom = 30;
+pub static XA_STRING: Atom = 31;
+pub static XA_VISUALID: Atom = 32;
+pub static XA_WINDOW: Atom = 33;
+pub static XA_WM_COMMAND: Atom = 34;
+pub static XA_WM_HINTS: Atom = 35;
+pub static XA_WM_CLIENT_MACHINE: Atom = 36;
+pub static XA_WM_ICON_NAME: Atom = 37;
+pub static XA_WM_ICON_SIZE: Atom = 38;
+pub static XA_WM_NAME: Atom = 39;
+pub static XA_WM_NORMAL_HINTS: Atom = 40;
+pub static XA_WM_SIZE_HINTS: Atom = 41;
+pub static XA_WM_ZOOM_HINTS: Atom = 42;
+pub static XA_MIN_SPACE: Atom = 43;
+pub static XA_NORM_SPACE: Atom = 44;
+pub static XA_MAX_SPACE: Atom = 45;
+pub static XA_END_SPACE: Atom = 46;
+pub static XA_SUPERSCRIPT_X: Atom = 47;
+pub static XA_SUPERSCRIPT_Y: Atom = 48;
+pub static XA_SUBSCRIPT_X: Atom = 49;
+pub static XA_SUBSCRIPT_Y: Atom = 50;
+pub static XA_UNDERLINE_POSITION: Atom = 51;
+pub static XA_UNDERLINE_THICKNESS: Atom = 52;
+pub static XA_STRIKEOUT_ASCENT: Atom = 53;
+pub static XA_STRIKEOUT_DESCENT: Atom = 54;
+pub static XA_ITALIC_ANGLE: Atom = 55;
+pub static XA_X_HEIGHT: Atom = 56;
+pub static XA_QUAD_WIDTH: Atom = 57;
+pub static XA_WEIGHT: Atom = 58;
+pub static XA_POINT_SIZE: Atom = 59;
+pub static XA_RESOLUTION: Atom = 60;
+pub static XA_COPYRIGHT: Atom = 61;
+pub static XA_NOTICE: Atom = 62;
+pub static XA_FONT_NAME: Atom = 63;
+pub static XA_FAMILY_NAME: Atom = 64;
+pub static XA_FULL_NAME: Atom = 65;
+pub static XA_CAP_HEIGHT: Atom = 66;
+pub static XA_WM_CLASS: Atom = 67;
+pub static XA_WM_TRANSIENT_FOR: Atom = 68;
+
+pub static XA_LAST_PREDEFINED: Atom = 68;
