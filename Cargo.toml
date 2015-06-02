@@ -10,5 +10,5 @@ name = "xlib"
 crate-type = ["rlib"]
 
 [dependencies]
-bitflags = "0.1"
+bitflags = "0.2"
 libc = "*"
