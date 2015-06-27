@@ -2222,3 +2222,24 @@ pub static XA_WM_CLASS: Atom = 67;
 pub static XA_WM_TRANSIENT_FOR: Atom = 68;
 
 pub static XA_LAST_PREDEFINED: Atom = 68;
+
+// from <X11/X.h>
+
+pub const InputOutput: u32 = 1;
+pub const InputOnly: u32 = 2;
+
+pub const CWBackPixmap: u64 = 1 << 0;
+pub const CWBackPixel: u64 = 1 << 1;
+pub const CWBorderPixmap: u64 = 1 << 2;
+pub const CWBorderPixel: u64 = 1 << 3;
+pub const CWBitGravity: u64 = 1 << 4;
+pub const CWWinGravity: u64 = 1 << 5;
+pub const CWBackingStore: u64 = 1 << 6;
+pub const CWBackingPlanes: u64 = 1 << 7;
+pub const CWBackingPixel: u64 = 1 << 8;
+pub const CWOverrideRedirect: u64 = 1 << 9;
+pub const CWSaveUnder: u64 = 1 << 10;
+pub const CWEventMask: u64 = 1 << 11;
+pub const CWDontPropagate: u64 = 1 << 12;
+pub const CWColormap: u64 = 1 << 13;
+pub const CWCursor: u64 = 1 << 14;
