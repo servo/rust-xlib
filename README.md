@@ -1,3 +1,5 @@
 # rust-xlib
 
-[Documentation](http://doc.servo.org/xlib/)
+Rust bindings for xlib.
+
+Note: This project is currently unmaintained.
